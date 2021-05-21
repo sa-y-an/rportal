@@ -1,4 +1,4 @@
-# rest-test-react
+# RP draft
 
 Installation 
 > Activate virtualenv
