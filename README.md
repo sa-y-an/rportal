@@ -1,6 +1,6 @@
 # RP draft
 
-##Installation Guidelines
+## Installation Guidelines
 
 
 ### For Windows
@@ -29,3 +29,5 @@ python manage.py runserver
 ```
 
 > Navigate to localhost:8000 to see the magic
+
+> PS 2: For more details refer to this tutorial <a href="https://simpleisbetterthancomplex.com/series/2017/09/04/a-complete-beginners-guide-to-django-part-1.html"> Tutorial </a>
