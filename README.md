@@ -30,4 +30,16 @@ python manage.py runserver
 
 > Navigate to localhost:8000 to see the magic <br>
 > PS 2: For more details refer to this tutorial <a href="https://simpleisbetterthancomplex.com/series/2017/09/04/a-complete-beginners-guide-to-django-part-1.html"> Tutorial </a> <br>
-> Instructions to update git forked repo <a href="https://medium.com/@topspinj/how-to-git-rebase-into-a-forked-repo-c9f05e821c8a"> Medium </a>
+
+## Contribution Guidelines 
+
+- Fork this Repo
+- Create a branch in the forked repo 
+```
+git branch develop
+git checkout develop
+```
+- Make Changes 
+- Push to your repo & make a pull request
+
+> PS 3 : Instructions to update git forked repo <a href="https://medium.com/@topspinj/how-to-git-rebase-into-a-forked-repo-c9f05e821c8a"> Medium </a>
