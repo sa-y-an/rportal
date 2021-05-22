@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %} {% load static %} {% block content %}
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faculty Dashboard</title>
+    <title>{% block title%} Student Dashboard {% endblock %}</title>
 </head>
-<body>
-    Hello sir, 
 
-    This is your dashboard
-</body>
-</html>
+    <div class="container">
+        Hello sir, username !!!
+
+        <ul>
+            <li> Personal Info</li>
+            <li>
+                List of projects
+            </li>
+        </ul>
+    </div>
+  
+{% endblock %}

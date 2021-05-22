@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %} {% load static %} {% block content %}
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Feed</title>
+    <title>{% block title%} Projects{% endblock %}</title>
 </head>
-<body>
-    The List of projects are given below.
-</body>
-</html>
+
+    <div class="container">
+        The List of projects are given below.
+
+        <ul>
+            <li>
+                Will contain a list of cards
+            </li>
+        </ul>
+    </div>
+  
+{% endblock %}

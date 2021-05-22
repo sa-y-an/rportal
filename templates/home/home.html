@@ -1,37 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-{% load static %}
-
+{% extends 'base.html' %} {% load static %} {% block content %}
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'home/home.css' %}">
-    <title>Research Portal</title>
+    <title>{% block title%} Home{% endblock %}</title>
 </head>
-<body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          <h1 class="display-4">IEEE Research portal </h1>
-          <p class="lead">Work in progress</p>
-        </div>
-      </div>
-    
+
     <div class="container">
       <ol>
         <li>
-          <a href="{% url 'posts:studentd' %}"> Student dashboard </a>
+          <a href="{% url 'posts:studentd' %}" target="_blank"> Student dashboard </a>
         </li>
         <li>
-          <a href="{% url 'posts:teacherd' %}"> Faculty dashboard </a>
+          <a href="{% url 'posts:teacherd' %}" target="_blank"> Faculty dashboard </a>
         </li>
         <li>
-          <a href="{% url 'posts:feed' %}"> Projects Feed </a>
+          <a href="{% url 'posts:feed' %}" target="_blank" > Projects Feed </a>
         </li>
       </ol>
     </div>
   
-</body>
-</html>
+    {% endblock %}
