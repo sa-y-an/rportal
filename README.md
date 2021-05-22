@@ -20,12 +20,12 @@ myenv/scripts/activate
 > For further details refer <a href="https://www.geeksforgeeks.org/creating-python-virtual-environment-windows-linux/">https://www.geeksforgeeks.org/creating-python-virtual-environment-windows-linux/</a>
 
 
-Django Installation
+Django Installation ( Developer Mode )
 ```
 pip install -r requirements.txt
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver
+python local.py makemigrations
+python local.py migrate
+python local.py runserver
 ```
 
 > Navigate to localhost:8000 to see the magic <br>
