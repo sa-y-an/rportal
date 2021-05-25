@@ -41,9 +41,9 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 People *love* thorough bug reports. I'm not even kidding.
 
 ## Use a Consistent Coding Style
-I'm again borrowing these from [Facebook's Guidelines](https://github.com/facebook/draft-js/blob/a9316a723f9e918afde44dea68b5f9f39b7d9b00/CONTRIBUTING.md)
-
-* 2 spaces for indentation rather than tabs
+<!-- I'm again borrowing these from [Facebook's Guidelines](https://github.com/facebook/draft-js/blob/a9316a723f9e918afde44dea68b5f9f39b7d9b00/CONTRIBUTING.md) -->
+* Tabs over spaces
+* We follow the PEP-8 standard for all the python code written. Guidelines can be found here <a href="https://www.python.org/dev/peps/pep-0008/" target="_blank"> https://www.python.org/dev/peps/pep-0008/ </a>
 
 ## License
 By contributing, you agree that your contributions will be licensed under its MPL-2.0 License.
