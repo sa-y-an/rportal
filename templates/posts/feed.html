@@ -14,4 +14,35 @@
         </ul>
     </div>
   
+    
+    <div class="container">
+        <h1>Feed page</h1>
+        {% for i in posts %}
+    
+        <div class="box">
+        <div class="info">
+            <h3>Created By</h3>
+            <h4>{{i.title }}</h4>
+        </div>
+    
+        <div class="content">
+            {% if i.image_url %}
+            <img src="{{i.image_url}}"  />
+            {% endif %}
+        </div>
+        <div class="content">
+            
+            {{i.description}}
+            
+        </div>
+
+        <div class="content">
+            
+            {{i.tag}}
+            
+        </div>
+    
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}
