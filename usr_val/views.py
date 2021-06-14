@@ -29,4 +29,20 @@ class SignupUser(View) :
             return render(request, 'usr_val/signupuser.html', {'form':UserCreationForm(), 'error':'Passwords did not match'})
 
 
-        
+class LoginUser(View):
+
+    def get(self,request):
+        pass
+
+    def post(self,request):
+        pass
+
+
+class LogoutUser(View):
+
+    def get(self,request):
+        pass
+
+    def post(self,request):
+        pass
+
