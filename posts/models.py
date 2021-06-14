@@ -12,3 +12,5 @@ class Post(models.Model):
     image_url = models.URLField(blank=True)
     tag = models.TextField(blank=True, default='hint')
 
+    def __str__(self):
+        return self.title

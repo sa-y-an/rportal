@@ -5,44 +5,36 @@
 </head>
 
     <div class="container">
-        The List of projects are given below.
-
-        <ul>
-            <li>
-                Will contain a list of cards
-            </li>
-        </ul>
+        <p>The List of currently available projects are given below. </p>
     </div>
-  
-    
+
+    <!-- Heading -->
+    <h1 align="center">Feed page</h1>
+
+
+
+    <!-- CARD -->
     <div class="container">
-        <h1>Feed page</h1>
-        {% for i in posts %}
-    
-        <div class="box">
-        <div class="info">
-            <h3>Created By</h3>
-            <h4>{{i.title }}</h4>
-        </div>
-    
-        <div class="content">
-            {% if i.image_url %}
-            <img src="{{i.image_url}}"  />
-            {% endif %}
-        </div>
-        <div class="content">
-            
-            {{i.description}}
+    {% for i in posts %}
+        <div class="card" style="width: 36rem;" >
+            <img src="{{i.image_url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{i.title }}</h5>
+            <p class="card-text">{{i.description}}</p>
+            <p class="card-text fw-bold">
+                {{i.tag}}
+            </p>
+            <a href="#" class="btn btn-primary">Know More</a>
+            </div>
+
+            <hr>
             
         </div>
 
-        <div class="content">
-            
-            {{i.tag}}
-            
-        </div>
-    
-        </div>
-        {% endfor %}
+        <br>
+    {% endfor %}
     </div>
+
+    <!-- CARD -->
+  
 {% endblock %}
