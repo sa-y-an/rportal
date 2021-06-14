@@ -8,7 +8,8 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    path('projects/', include('posts.urls'))
+    path('projects/', include('posts.urls')),
+    path('users/', include('usr_val.urls') )
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
