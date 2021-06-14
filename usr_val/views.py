@@ -32,19 +32,21 @@ class SignupUser(View) :
 class LoginUser(View):
 
     def get(self,request):
-        return render(request, 'todo/loginuser.html', {'form':AuthenticationForm()})
+        return render(request, 'usr_val/loginuser.html', {'form':AuthenticationForm()})
 
     def post(self,request):
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
-            return render(request, 'todo/loginuser.html', {'form':AuthenticationForm(), 'error':'Username and password did not match'})
+            return render(request, 'usr_val/loginuser.html', {'form':AuthenticationForm(), 'error':'Username and password did not match'})
         else:
             login(request, user)
             return redirect('home:home')
 
+
 @login_required
-class LogoutUser(View):
-    def post(self,request):
+def logoutuser(request):
+    if request.method == 'POST':
         logout(request)
         return redirect('home:home')
+
 

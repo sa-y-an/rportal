@@ -27,6 +27,9 @@
           <li class="nav-item">
             <a class="nav-link active" href="{% url 'home:director' %}" >Director's Message</a>
           </li>
+            
+          {% if user.is_authenticated %}
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dashboard
@@ -38,9 +41,31 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Sign Up </a>
+            <a href="#" onclick="$('#signOutBtn').click()" class="nav-link">Logout</a>
+            <form style='display: none;' method="POST" action="{% url 'usr_val:logoutuser' %}">
+              {% csrf_token %}
+              <button id="signOutBtn" type="submit">Logout</button>
+            </form>
           </li>
+
+          {% else %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Signup/Login
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'usr_val:signupuser' %}" >Signup as Student</a></li>
+              <li><a class="dropdown-item" href="{% url 'posts:teacherd' %}" >Signup as Faculty</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'usr_val:loginuser'%}">Login</a></li>
+            </ul>
+          </li>
+          
+
+
+          {% endif %}
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

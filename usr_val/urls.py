@@ -10,5 +10,5 @@ app_name = 'usr_val'
 urlpatterns = [
     path('signupuser/', views.SignupUser.as_view() , name="signupuser"),
     path('loginuser/', views.LoginUser.as_view() , name="loginuser"),
-    path('logout/', views.LogoutUser.as_view(), name='logoutuser'),
+    path('logout/', views.logoutuser, name='logoutuser'),
 ]
