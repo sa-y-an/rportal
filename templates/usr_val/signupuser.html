@@ -30,6 +30,11 @@
             </div>
             <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
+
+        <p>
+            {{form.errors}}
+        </p>
+
         <hr>
         <div class="text-center">
             Do you already have an account? <a href="{% url 'usr_val:loginuser' %}">Login here</a>
