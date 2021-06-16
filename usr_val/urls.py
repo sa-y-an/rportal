@@ -24,7 +24,7 @@ urlpatterns = [
 
 
     # post creation 
-    path('teacherd/', views.teacherd, name='teacherd'),
+    path('teacherd/', views.TeacherPostCreation.as_view(), name='teacherd'),
     path('student', views.studentd, name='studentd'),
 
 

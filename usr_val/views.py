@@ -11,7 +11,7 @@ from .models import Teacher,Student
 from django.views.generic.edit import FormView, UpdateView, FormMixin
 from django.contrib.auth.models import Group
 from django.contrib import messages
-from .forms import TeacherDetails, StudentDetails
+from .forms import PostCreationForm, TeacherDetails, StudentDetails
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from posts.models import Post
@@ -144,8 +144,22 @@ class StudentCreateView(LoginRequiredMixin,  FormView):
 
 
 
-def teacherd(request):
-    return render(request, 'usr_val/teacherd.html')
+class TeacherPostCreation(LoginRequiredMixin, CreateView ):
+    # model = Post
+    form_class = PostCreationForm
+    template_name = 'usr_val/teacherd.html'
+    success_url = '/projects/'
+
+
+    def form_valid(self,form):
+        obj = form.save(commit = False)
+        # print(obj)
+        acessor = get_object_or_404(Teacher, user = self.request.user)
+        obj.teacher = acessor
+        obj.save()
+        return super().form_valid(form)
+
+        
 
 
 

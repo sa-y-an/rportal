@@ -5,14 +5,48 @@
 </head>
 
     <div class="container">
-        Hello sir, username !!!
+        Hello sir, {{ user.username }} !!!
 
-        <ul>
-            <li> Personal Info</li>
-            <li>
-                List of projects
-            </li>
-        </ul>
+        <div class="container">
+            <h4>
+                Personal Details
+            </h4>
+
+            <p>
+                <ol>
+                    <li>
+                        {{user.first_name}}
+                    </li>
+                    <li>
+                        {{user.last_name}}
+                    </li>
+                    <li>
+                        {{user.email}}
+                    </li>
+                </ol>
+            </p>
+        </div>
+
+        <hr>
+
+        <h3>
+            Create a Project
+        </h3>
+        
+
+        <div class="container">
+
+
+            <form class="form-group" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+    
+                <input type="submit" value="save"/>
+        
+            </form>
+
+        </div>
+        
     </div>
   
 {% endblock %}
