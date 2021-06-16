@@ -30,6 +30,9 @@ urlpatterns = [
     # individual posts
     path('project/<int:post_id>/', views.apply, name='apply'),
 
+    #info
+    path('info', views.info , name= 'info' )
+
 
 
 

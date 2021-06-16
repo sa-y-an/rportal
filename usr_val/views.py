@@ -171,7 +171,7 @@ def studentd(request):
 @login_required
 def apply(request, post_id):
 
-    print('bokachoda')
+    
 
     project = get_object_or_404(Post, pk = post_id)
     try :
@@ -199,6 +199,7 @@ def apply(request, post_id):
 
             if student not in project.student.all() :
                 project.student.add(student)
+                project.save()
                 message = "You have Sucessfully Apllied to this project"
 
             else :
@@ -209,3 +210,10 @@ def apply(request, post_id):
 
     
 
+@login_required
+def info(request) :
+    user = request.user
+    teacher = get_object_or_404(Teacher, user = user)
+    posts = Post.objects.filter(teacher = teacher)
+    print(posts.student)
+    return render(request, 'usr_val/info.html', {'posts' : posts})
