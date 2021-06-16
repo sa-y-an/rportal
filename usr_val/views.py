@@ -59,7 +59,7 @@ class LoginUser(View):
             return render(request, 'usr_val/loginuser.html', {'form':AuthenticationForm(), 'error':'Username and password did not match'})
         else:
             login(request, user)
-            return redirect('usr_val:teacher')
+            return redirect('home:home')
 
 
 @login_required
