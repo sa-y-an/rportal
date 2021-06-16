@@ -21,4 +21,13 @@ urlpatterns = [
 
     path('teacher/',views.TeacherCreateView.as_view() , name='teacher'),
     path('student/',views.StudentCreateView.as_view() , name='student'),
+
+
+    # post creation 
+    # path('student/', views.studentd , name= 'studentd'),
+    path('teacher/', views.teacherd, name='teacherd'),
+    path('student', views.studentd, name='studentd'),
+
+
+
 ]

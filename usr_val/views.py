@@ -14,7 +14,7 @@ from django.contrib import messages
 from .forms import TeacherDetails, StudentDetails
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from posts.models import Post
 
 
 # teacher 
@@ -138,3 +138,16 @@ class StudentCreateView(LoginRequiredMixin,  FormView):
         model.save()
         
         return super().form_valid(form)
+
+
+
+
+
+
+def teacherd(request):
+    return render(request, 'usr_val/teacherd.html')
+
+
+
+def studentd(request):
+    return render(request, 'usr_val/studentd.html')
