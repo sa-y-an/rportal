@@ -216,7 +216,7 @@ def info(request) :
     user = request.user
     teacher = get_object_or_404(Teacher, user = user)
     posts = Post.objects.filter(teacher = teacher)
-    print(posts.get(title = 'Matlab Mastery').student.all())
+    # print(posts.get(title = 'Matlab Mastery').student.all())
     # print(posts.student)
     return render(request, 'usr_val/info.html', {'posts' : posts})
 
