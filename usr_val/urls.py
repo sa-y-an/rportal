@@ -31,7 +31,8 @@ urlpatterns = [
     path('project/<int:post_id>/', views.apply, name='apply'),
 
     #info
-    path('info', views.info , name= 'info' )
+    path('info', views.info , name= 'info' ),
+    path('stinfo/<int:sid>', views.stinfo , name= 'stinfo' )
 
 
 

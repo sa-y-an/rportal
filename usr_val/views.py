@@ -199,6 +199,7 @@ def apply(request, post_id):
 
             if student not in project.student.all() :
                 project.student.add(student)
+                
                 project.save()
                 message = "You have Sucessfully Apllied to this project"
 
@@ -215,6 +216,14 @@ def info(request) :
     user = request.user
     teacher = get_object_or_404(Teacher, user = user)
     posts = Post.objects.filter(teacher = teacher)
-    print(posts)
+    print(posts.get(title = 'Matlab Mastery').student.all())
     # print(posts.student)
     return render(request, 'usr_val/info.html', {'posts' : posts})
+
+@login_required
+def stinfo(request, sid) :
+    teacher = get_object_or_404(Teacher, user = request.user)
+    project = get_object_or_404(Post, pk = sid)
+    students = project.student.all()
+    return render(request, 'usr_val/stinfo.html', {'students':students , 'project':project})
+

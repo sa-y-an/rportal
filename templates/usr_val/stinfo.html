@@ -5,20 +5,30 @@
 </head>
 
 <div class="container">
+
+  <h2>
+    {{project.title}}
+  </h2>
+
     <table class="table table-dark">
         <thead>
           <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Branch</th>
+            <th scope="col">Email</th>
+
           </tr>
         </thead>
-        {% for i in posts %}
+        {% for i in students %}
         <tbody>
           <tr>
-            <td> <a href="{% url 'usr_val:stinfo' i.id %}">{{i.title }} </a></td>
+            <td> {{i.user.first_name }}  {{ i.user.last_name}} </td>
             <td> 
 
-                {{i.description}}
+                {{i.branch}}
+            </td>
+            <td>
+              {{i.user.email}}
             </td>
           </tr>
         </tbody>
