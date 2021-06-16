@@ -35,8 +35,12 @@
               Dashboard
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="{% url 'posts:studentd' %}" >Student Dashboard</a></li>
+              
+              {%  ifequal 'teacher' grp  %}
               <li><a class="dropdown-item" href="{% url 'usr_val:teacher' %}" >Faculty Dashboard</a></li>
+              {% else %}
+              <li><a class="dropdown-item" href="{% url 'posts:studentd' %}" >Student Dashboard</a></li>
+              {% endifequal %}
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>

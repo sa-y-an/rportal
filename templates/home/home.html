@@ -7,6 +7,12 @@
 
 
     <div class="container">
+
+      <p>
+     {% if user.is_authenticated %}
+     Hello {{ user.username }} !!!
+     {% endif %}
+     </p>
       <ol>
         <li>
           <a href="{% url 'posts:studentd' %}" target="_blank"> Student dashboard </a>
