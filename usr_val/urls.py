@@ -24,8 +24,7 @@ urlpatterns = [
 
 
     # post creation 
-    # path('student/', views.studentd , name= 'studentd'),
-    path('teacher/', views.teacherd, name='teacherd'),
+    path('teacherd/', views.teacherd, name='teacherd'),
     path('student', views.studentd, name='studentd'),
 
 

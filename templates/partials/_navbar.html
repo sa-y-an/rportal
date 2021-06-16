@@ -37,14 +37,17 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               
               {%  ifequal 'teacher' grp  %}
-              <li><a class="dropdown-item" href="{% url 'usr_val:teacher' %}" >Faculty Dashboard</a></li>
+              <li><a class="dropdown-item" href="{% url 'usr_val:teacher' %}" >Update Info</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'usr_val:teacherd' %}">Dashboard</a></li>
               {% endifequal %}
 
               {%  ifequal 'student' grp  %}
-              <li><a class="dropdown-item" href="{% url 'usr_val:student' %}" >Student Dashboard</a></li>
-              {% endifequal %}
+              <li><a class="dropdown-item" href="{% url 'usr_val:student' %}" >Update Info</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="{% url 'usr_val:studentd' %}">Dashboard</a></li>
+              {% endifequal %}
+              
             </ul>
           </li>
 
