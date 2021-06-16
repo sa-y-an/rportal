@@ -30,20 +30,20 @@ class SignupUser(View) :
 
     def post(self,request):
         if request.POST['password1'] == request.POST['password2']:
-            # try:
-            user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
-            user.save()
-            group = Group.objects.get(name='teacher')
-            user.groups.add(group)
-            t = Teacher.objects.create(
-            user=user)
-            t.save()
-            messages.success(request, 'Account was created for ' + user.username)                
-            
-            login(request, user)
-            return redirect('home:home')
-            # except IntegrityError:
-            #     return render(request, 'usr_val/signupuser.html', {'form':UserCreationForm(), 'error':'That username has already been taken. Please choose a new username'})
+            try:
+                user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
+                user.save()
+                group = Group.objects.get(name='teacher')
+                user.groups.add(group)
+                t = Teacher.objects.create(
+                user=user)
+                t.save()
+                messages.success(request, 'Account was created for ' + user.username)                
+                
+                login(request, user)
+                return redirect('home:home')
+            except IntegrityError:
+                return render(request, 'usr_val/signupuser.html', {'form':UserCreationForm(), 'error':'That username has already been taken. Please choose a new username'})
         else:
             return render(request, 'usr_val/signupuser.html', {'form':UserCreationForm(), 'error':'Passwords did not match'})
 
@@ -103,20 +103,20 @@ class SignupStudent(View) :
 
     def post(self,request):
         if request.POST['password1'] == request.POST['password2']:
-            # try:
-            user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
-            user.save()
-            group = Group.objects.get(name='student')
-            user.groups.add(group)
-            t = Student.objects.create(
-            user=user)
-            t.save()
-            messages.success(request, 'Account was created for ' + user.username)                
-            
-            login(request, user)
-            return redirect('home:home')
-            # except IntegrityError:
-            #     return render(request, 'usr_val/signupuser.html', {'form':UserCreationForm(), 'error':'That username has already been taken. Please choose a new username'})
+            try:
+                user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
+                user.save()
+                group = Group.objects.get(name='student')
+                user.groups.add(group)
+                t = Student.objects.create(
+                user=user)
+                t.save()
+                messages.success(request, 'Account was created for ' + user.username)                
+                
+                login(request, user)
+                return redirect('home:home')
+            except IntegrityError:
+                return render(request, 'usr_val/signupuser.html', {'form':UserCreationForm(), 'error':'That username has already been taken. Please choose a new username'})
         else:
             return render(request, 'usr_val/signupstudent.html', {'form':UserCreationForm(), 'error':'Passwords did not match'})
 
