@@ -1,4 +1,3 @@
-from usr_val.forms import TeacherForm
 from django.shortcuts import render
 from django.views import View 
 from django.shortcuts import render, redirect, get_object_or_404
@@ -9,11 +8,12 @@ from django.contrib.auth import login, logout, authenticate
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from .models import Teacher
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, UpdateView, FormMixin
 from django.contrib.auth.models import Group
 from django.contrib import messages
-from .forms import TeacherForm
-
+from .forms import TeacherDetails
+from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 class SignupUser(View) :
@@ -53,7 +53,7 @@ class LoginUser(View):
             return render(request, 'usr_val/loginuser.html', {'form':AuthenticationForm(), 'error':'Username and password did not match'})
         else:
             login(request, user)
-            return redirect('usr_val:tdashboard')
+            return redirect('usr_val:teacher')
 
 
 @login_required
@@ -66,13 +66,25 @@ def logoutuser(request):
 
 
 
-class TeacherFormView(FormView):
-    template_name = 'usr_val/tadasboard.html'
-    form_class = TeacherForm
-    success_url = ''
+class TeacherCreateView(LoginRequiredMixin,  FormView):
+    template_name = 'usr_val/tdashboard.html'
+    form_class = TeacherDetails
+    success_url = '/'
 
     def form_valid(self, form):
-        form.instance = self.request.user
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
+        my_form = form.cleaned_data
+        model = get_object_or_404(Teacher, user = self.request.user)
+        model.user.first_name = my_form['first_name']
+        model.user.last_name = my_form['last_name']
+        model.user.email = my_form['email']
+        model.user.save()
+
+        model.branch = my_form['branch']
+        model.contact = my_form['contact']
+        model.save()
+        
         return super().form_valid(form)
+
+
+
+

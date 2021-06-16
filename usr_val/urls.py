@@ -17,5 +17,5 @@ urlpatterns = [
 
     # Teacher
 
-    path('teacher/',views.TeacherFormView , name='teacher')
+    path('teacher/',views.TeacherCreateView.as_view() , name='teacher')
 ]
