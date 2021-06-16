@@ -38,8 +38,10 @@
               
               {%  ifequal 'teacher' grp  %}
               <li><a class="dropdown-item" href="{% url 'usr_val:teacher' %}" >Faculty Dashboard</a></li>
-              {% else %}
-              <li><a class="dropdown-item" href="{% url 'posts:studentd' %}" >Student Dashboard</a></li>
+              {% endifequal %}
+
+              {%  ifequal 'student' grp  %}
+              <li><a class="dropdown-item" href="{% url 'usr_val:student' %}" >Student Dashboard</a></li>
               {% endifequal %}
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -61,7 +63,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="{% url 'usr_val:signupuser' %}" >Signup as Faculty</a></li>
-              <li><a class="dropdown-item" href="{% url 'posts:teacherd' %}" >Signup as Student</a></li>
+              <li><a class="dropdown-item" href="{% url 'usr_val:signupstudent' %}" >Signup as Student</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="{% url 'usr_val:loginuser'%}">Login</a></li>
             </ul>
