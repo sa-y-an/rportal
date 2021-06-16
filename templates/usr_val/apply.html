@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% extends 'base.html' %} {% load static %} {% block content %}
+<head>
+    <title>{% block title%} {{i.title}} {% endblock %}</title>
+</head>
+
+<div class="container">
+    <div class="card" style="width: 36rem;" >
+        <img src="{{i.image_url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h5 class="card-title">{{i.title }}</h5>
+        <p class="card-text">{{i.description}}</p>
+        <p class="card-text fw-bold">
+            {{i.tag}}
+        </p>
+        
+        <h4>
+            Posted By
+        </h4>
+        <p>
+            {{i.teacher.user.username}}
+        </p>
+
+
+        <a href="{% url 'usr_val:apply' i.id %}" class="btn btn-primary">Know More</a>
+        </div>
+
+        <hr>
+        
+    </div>
+
+    <br>
+
+    <div class="container">
+        {% if apply %}
+        <div class="alert alert-success" role="alert">
+            You have already applied to this project
+          </div>
+
+        
+        {% else %}
+
+        <form method = "POST" class="form-group" >
+            {% csrf_token %}
+
+            <p>
+                To apply to this project click the button below
+            </p>
+
+            <button type="submit" class="btn btn-success"> Apply </button>
+        </form>
+
+        {% endif %}
+
+        <div class="alert alert-success" role="alert">
+            {{message}}
+        </div>
+        
+
+
+
+    </div>
+</div>
+
+
+{% endblock %}

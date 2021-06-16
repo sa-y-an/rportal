@@ -4,15 +4,27 @@
     <title>{% block title%} Student Dashboard{% endblock %}</title>
 </head>
 
-    <div class="container">
-        Hello student !!!
+<div class="container">
+    Hello {{ user.username }}, !!!
 
-        <ul>
-            <li> Personal Info</li>
-            <li>
-                Projects Applied 
-            </li>
-        </ul>
+    <div class="container">
+        <h4>
+            Personal Details
+        </h4>
+
+        <p>
+            <ol>
+                <li>
+                    {{user.first_name}}
+                </li>
+                <li>
+                    {{user.last_name}}
+                </li>
+                <li>
+                    {{user.email}}
+                </li>
+            </ol>
+        </p>
     </div>
   
 {% endblock %}

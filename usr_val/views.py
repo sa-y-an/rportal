@@ -1,3 +1,5 @@
+from django.http.response import HttpResponseNotAllowed
+from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
 from django.views import View 
 from django.shortcuts import render, redirect, get_object_or_404
@@ -162,6 +164,48 @@ class TeacherPostCreation(LoginRequiredMixin, CreateView ):
         
 
 
-
 def studentd(request):
     return render(request, 'usr_val/studentd.html')
+
+
+@login_required
+def apply(request, post_id):
+
+    print('bokachoda')
+
+    project = get_object_or_404(Post, pk = post_id)
+    try :
+        student = get_object_or_404(Student, user = request.user)
+    except :
+        student = None
+    
+    st_apply = False
+
+    if request.method == 'GET':
+        if student in project.student.all() :
+            st_apply = True
+        
+        return render(request, 'usr_val/apply.html', {'i' : project , 'apply' :st_apply })
+
+
+    if request.method == 'POST':
+
+        if student == None :
+            return HttpResponse("Only students can apply to a project")
+        
+        else : 
+
+            message = 'please try later'
+
+            if student not in project.student.all() :
+                project.student.add(student)
+                message = "You have Sucessfully Apllied to this project"
+
+            else :
+                message = "You have already apllied to this project"
+
+            return render(request, 'usr_val/apply.html' , {'message' : message , 'i' : project})
+
+
+    
+

@@ -27,6 +27,10 @@ urlpatterns = [
     path('teacherd/', views.TeacherPostCreation.as_view(), name='teacherd'),
     path('student', views.studentd, name='studentd'),
 
+    # individual posts
+    path('project/<int:post_id>/', views.apply, name='apply'),
+
+
 
 
 ]
