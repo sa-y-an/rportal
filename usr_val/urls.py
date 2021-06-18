@@ -4,7 +4,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 from . import views
 
-
 app_name = 'usr_val'
 
 urlpatterns = [
@@ -32,9 +31,9 @@ urlpatterns = [
 
     #info
     path('info', views.info , name= 'info' ),
-    path('stinfo/<int:sid>', views.stinfo , name= 'stinfo' )
+    path('stinfo/<int:sid>', views.stinfo , name= 'stinfo' ),
 
 
-
+    # email reset 
 
 ]
