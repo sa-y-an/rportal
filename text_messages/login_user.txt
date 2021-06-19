@@ -1,0 +1,12 @@
+Hello {},
+
+Thanks for signing up with us !
+The details we recieved from you are as follows :
+Name - {} {}
+Contact Number - {}
+UserName - {}
+
+Have a good day !
+
+With Regards 
+Sayan 

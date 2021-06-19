@@ -17,6 +17,7 @@ from .forms import PostCreationForm, TeacherDetails, StudentDetails
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from posts.models import Post
+from django.core.mail import send_mail
 
 
 # teacher 
@@ -38,7 +39,7 @@ class SignupUser(View) :
                 t = Teacher.objects.create(
                 user=user)
                 t.save()
-                messages.success(request, 'Account was created for ' + user.username)                
+                messages.success(request, 'Account was created for ' + user.username)           
                 
                 login(request, user)
                 return redirect('home:home')
@@ -88,6 +89,18 @@ class TeacherCreateView(LoginRequiredMixin,  FormView):
         model.branch = my_form['branch']
         model.contact = my_form['contact']
         model.save()
+
+        with open('text_messages/login_user.txt', 'r') as file:
+            data_email = file.read()
+
+        send_mail(
+                'Signup Sucessfull',
+                str(data_email).format(model.user.first_name , model.user.first_name , 
+                model.user.last_name, model.contact , model.user.username ),
+                'ieeesbnitd@gmail.com',
+                [model.user.email],
+                fail_silently=False,
+                )
         
         return super().form_valid(form)
 
@@ -138,6 +151,18 @@ class StudentCreateView(LoginRequiredMixin,  FormView):
         model.branch = my_form['branch']
         model.contact = my_form['contact']
         model.save()
+
+        with open('text_messages/login_user.txt', 'r') as file:
+            data_email = file.read()
+
+        send_mail(
+                'Signup Sucessfull',
+                str(data_email).format(model.user.first_name , model.user.first_name , 
+                model.user.last_name, model.contact , model.user.username ),
+                'ieeesbnitd@gmail.com',
+                [model.user.email],
+                fail_silently=True,
+                )
         
         return super().form_valid(form)
 
