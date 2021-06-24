@@ -2,6 +2,18 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <head>
     <title>{% block title%} Projects{% endblock %}</title>
+    <style>
+        .posts{
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        .card {
+            margin: 2em;
+            padding: 2em;
+        }
+    </style>
 </head>
 
     <div class="container">
@@ -14,9 +26,9 @@
 
 
     <!-- CARD -->
-    <div class="container">
+    <div class="container posts">
     {% for i in posts %}
-        <div class="card" style="width: 36rem;" >
+        <div class="card" style="width: 30vh;" >
             <img src="{{i.image_url}}" class="card-img-top" alt="...">
             <div class="card-body">
             <h5 class="card-title">{{i.title }}</h5>
