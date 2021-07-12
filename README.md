@@ -39,6 +39,8 @@ python local.py migrate
 python local.py runserver
 ```
 
+- Follow the setup guidelines above after this.
+
 > Navigate to localhost:8000 to see the magic <br>
 > PS 2: For more details refer to this tutorial <a href="https://simpleisbetterthancomplex.com/series/2017/09/04/a-complete-beginners-guide-to-django-part-1.html"> Tutorial </a> <br>
 
