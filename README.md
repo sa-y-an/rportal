@@ -1,5 +1,16 @@
 # RP draft
 
+## Setup Guidelines 
+- After sucessfull installation create a .env in the directory where settings.py is located 
+- It must have the content as follows 
+<img src = "screenshots/env.png" align="center"/>
+
+- Create two groups (student and teacher) from the admin panel or shell 
+<img src="screenshots/groups.png" align="center" />
+
+
+
+
 ## Installation Guidelines
 
 
