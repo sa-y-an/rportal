@@ -1,17 +1,17 @@
 # Departments
 DEPARTMENTS=[
-    ('BT','BIOTECHNOLOGY'),
-    ('CE','CIVIL ENGINEERING'),
-    ('CH','CHEMICAL ENGINEERING'),
-    ('CS','COMPUTER SCIENCE & ENGINEERING'),
-    ('CY','CHEMISTRY'),
-    ('EC','ELECTRONICS AND COMMUNICATION ENGINEERING'),
-    ('EE','ELECTRICAL ENGINEERING'),
-    ('ES','EARTH & ENVIRONMENTAL STUDIES'),
-    ('HS','HUMANITIES AND SOCIAL SCIENCES'),
-    ('MA','MATHEMATICS'),
-    ('ME','MECHANICAL ENGINEERING'),
-    ('MM','META'),
-    ('MS','MANAGEMENT'),
-    ('PH','PHY')
+    ('BT','BT'),
+    ('CE', 'CE'),
+    ('CH', 'CH'),
+    ('CS','CH'),
+    ('CY','CY'),
+    ('EC','EC'),
+    ('EE','EE'),
+    ('ES','ES'),
+    ('HS','HS'),
+    ('MA','MA'),
+    ('ME','ME'),
+    ('MM','MM'),
+    ('MS','MS'),
+    ('PH','PH')
 ]
