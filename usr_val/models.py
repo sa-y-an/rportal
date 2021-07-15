@@ -28,8 +28,8 @@ class Teacher(models.Model):
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    branch = models.CharField(max_length=4, choices=DEPARTMENTS)
-    contact = models.CharField(blank=True, max_length=15,null=True)
+    branch = models.CharField(max_length=100)
+    contact = models.BigIntegerField(blank=True,null=True)
     cv = models.FileField(null=True,
                           upload_to=cv_upload_location,
                           validators=[FileExtensionValidator(allowed_extensions=['pdf',])],
