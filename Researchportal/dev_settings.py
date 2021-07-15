@@ -16,6 +16,8 @@ UPLOADED_FILES_USE_URL = True
 
 ALLOWED_HOSTS = ['*']
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 # Application definition
 
@@ -34,9 +36,11 @@ INSTALLED_APPS = [
     # third party
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -190,21 +194,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("PASSWORD")
-
-# Departments
-DEPARTMENTS=[
-    ('BT','BIOTECHNOLOGY'),
-    ('CE','CIVIL ENGINEERING'),
-    ('CH','CHEMICAL ENGINEERING'),
-    ('CS','COMPUTER SCIENCE & ENGINEERING'),
-    ('CY','CHEMISTRY'),
-    ('EC','ELECTRONICS AND COMMUNICATION ENGINEERING'),
-    ('EE','ELECTRICAL ENGINEERING'),
-    ('ES','EARTH & ENVIRONMENTAL STUDIES'),
-    ('HS','HUMANITIES AND SOCIAL SCIENCES'),
-    ('MA','MATHEMATICS'),
-    ('ME','MECHANICAL ENGINEERING'),
-    ('MM','META'),
-    ('MS','MANAGEMENT'),
-    ('PH','PHY')
-]

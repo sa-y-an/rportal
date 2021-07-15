@@ -16,6 +16,12 @@
 
 ### For Windows
 
+Add the foollowing to requirements.txt (only for windows)
+```
+python-magic-bin==0.4.14
+```
+
+
 Install virtualenvironment (if not already)
 ```
 pip install virtualenv
