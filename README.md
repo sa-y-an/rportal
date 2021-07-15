@@ -18,7 +18,7 @@
 
 Add the foollowing to requirements.txt (only for windows)
 ```
-python-magic==0.4.24
+python-magic-bin==0.4.14
 ```
 
 
