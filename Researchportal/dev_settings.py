@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 import environ
-
+from datetime import timedelta
 env = environ.Env()
 environ.Env.read_env()
 
@@ -12,11 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = env("DEBUG")
 
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-
+UPLOADED_FILES_USE_URL = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -30,9 +26,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # my apps
     'home',
     'posts',
     'usr_val',
+
+    # third party
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
