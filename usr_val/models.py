@@ -19,7 +19,7 @@ def cv_upload_location(instance, filename, **kwargs):
 
 class Teacher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    branch = models.CharField(max_length=3, choices=DEPARTMENTS)
+    branch = models.CharField(max_length=4, choices=DEPARTMENTS)
     contact = models.CharField(blank=True, max_length=15)
 
     def __str__(self):
@@ -28,7 +28,7 @@ class Teacher(models.Model):
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    branch = models.CharField(max_length=3, choices=DEPARTMENTS)
+    branch = models.CharField(max_length=4, choices=DEPARTMENTS)
     contact = models.CharField(blank=True, max_length=15,null=True)
     cv = models.FileField(null=True,
                           upload_to=cv_upload_location,
