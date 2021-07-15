@@ -20,7 +20,10 @@ Add the foollowing to requirements.txt (only for windows)
 ```
 python-magic-bin==0.4.14
 ```
-
+For Debian/Ubuntu
+```
+sudo apt-get install libmagic1
+```
 
 Install virtualenvironment (if not already)
 ```
