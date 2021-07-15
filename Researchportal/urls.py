@@ -3,6 +3,10 @@ from django.urls import include, path
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 # import home
 
 urlpatterns = [
@@ -11,6 +15,12 @@ urlpatterns = [
     path('projects/', include('posts.urls')),
     path('users/', include('usr_val.urls')),
 
+    # API URLs
+    path('api/user/',include('usr_val.api.urls',namespace='user_api')),
+
+    # JWT
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     path('reset_password/',
     auth_views.PasswordResetView.as_view(template_name="usr_val/password_reset.html"),
