@@ -33,6 +33,7 @@ class Student(models.Model):
     cv = models.FileField(null=True,
                           upload_to=cv_upload_location,
                           validators=[FileExtensionValidator(allowed_extensions=['pdf',])],
+                          max_length=255
                           )
 
     def __str__(self):
