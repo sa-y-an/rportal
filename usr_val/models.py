@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User, Group
 from django.db.models.signals import pre_save, post_save
 from django.core.validators import FileExtensionValidator
-from Researchportal.dev_settings import (
+from .constants import (
     DEPARTMENTS,
 )
 from .utils import get_group_name
