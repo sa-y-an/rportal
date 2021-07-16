@@ -18,7 +18,11 @@
 
 Add the foollowing to requirements.txt (only for windows)
 ```
-python-magic-bin==0.4.14
+pip install python-magic-bin
+```
+### For Linux/Debian
+```
+sudo apt-get install libmagic1
 ```
 
 
@@ -55,8 +59,7 @@ python local.py runserver
 - Fork this Repo
 - Create a branch in the forked repo 
 ```
-git branch develop
-git checkout develop
+git checkout -b develop
 ```
 - Make Changes 
 - Push to your repo & make a pull request
