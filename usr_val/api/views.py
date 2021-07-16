@@ -12,6 +12,8 @@ from .serializers import (
     UserSerializer,
     StudentRegistrationSerializer,
     StudentSerializer,
+    TeacherRegistrationSerializer,
+    TeacherSerializer,
 )
 from usr_val.models import Student, Teacher
 
@@ -25,6 +27,15 @@ class StudentRegistrationView(CreateAPIView):
 
     def get_serializer_context(self):
         context = super(StudentRegistrationView, self).get_serializer_context()
+        context.update({"request": self.request})
+        return context
+
+
+class TeacherRegistrationView(CreateAPIView):
+    serializer_class = TeacherRegistrationSerializer
+
+    def get_serializer_context(self):
+        context = super(TeacherRegistrationView, self).get_serializer_context()
         context.update({"request": self.request})
         return context
 
@@ -58,5 +69,11 @@ class AllUsersView(ListAPIView):
 class AllStudentsView(ListAPIView):
     queryset=Student.objects.all()
     serializer_class = StudentSerializer
+    permission_classes = (IsAdminUser,)
+
+
+class AllTeachersView(ListAPIView):
+    queryset=Teacher.objects.all()
+    serializer_class = TeacherSerializer
     permission_classes = (IsAdminUser,)
 
