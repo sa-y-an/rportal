@@ -10,7 +10,6 @@ from .utils import get_group_name
 
 def cv_upload_location(instance, filename, **kwargs):
     file_path = 'CVS/{username}.pdf'.format(username=instance.user.username)
-    print(file_path)
     return file_path
 
 
