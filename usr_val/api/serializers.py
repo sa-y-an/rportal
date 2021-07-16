@@ -93,6 +93,7 @@ class StudentRegistrationSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
 
     class Meta:
         model=Student
@@ -126,7 +127,8 @@ class TeacherRegistrationSerializer(serializers.ModelSerializer):
 
 
 class TeacherSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
 
     class Meta:
         model = Teacher
-        fields = ['user', 'branch', 'contact']
+        fields = '__all__'
