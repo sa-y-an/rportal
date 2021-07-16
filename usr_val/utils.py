@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 import magic
 from django.utils.deconstruct import deconstructible
 from django.template.defaultfilters import filesizeformat
+from constants import FACULTY_DOMAINS, STUDENT_DOMAINS
 
 
 def institute_email_validator(value):
@@ -17,13 +18,17 @@ def institute_email_validator(value):
 
 
 def get_group_name(email):
-    domain = email.split('@')[1].lower()
-    parts = domain.split('.')
-    if len(parts) != 4:
-        raise Exception('Email ID not valid')
-    if parts[0] not in ('btech', 'mtech', 'phd'):
+    try:
+        domain = email.split('@')[1].lower()
+        parts = domain.split('.')
+        if len(parts) != 4:
+            raise Exception('Email ID not valid')
+    except IndexError:
         return 'teacher'
-    return 'student'
+    
+    if parts[0] in STUDENT_DOMAINS:
+        return 'student'
+    return 'teacher'
 
 
 class LowerEmailField(serializers.EmailField):
@@ -47,7 +52,7 @@ class FileValidator(object):
         'content_type': "Files of type %(content_type)s are not supported.",
     }
 
-    def __init__(self, max_size=1024*10, min_size=1024, content_types=()):
+    def __init__(self, max_size=1024 * 10, min_size=1024, content_types=()):
         self.max_size = max_size
         self.min_size = min_size
         self.content_types = content_types
