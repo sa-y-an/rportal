@@ -15,3 +15,27 @@ DEPARTMENTS = [
     ('MS', 'MS'),
     ('PH', 'PH')
 ]
+
+FACULTY_DOMAINS=(
+    'bt',
+    'ce',
+    'che',
+    'cse',
+    'ch',
+    'ece',
+    'ee',
+    'ees',
+    'hu',
+    'maths',
+    'me',
+    'mme',
+    'dms',
+    'phy',
+)
+
+STUDENT_DOMAINS=(
+    'btech',
+    'mtech',
+    'phd',
+    'mba',
+)
