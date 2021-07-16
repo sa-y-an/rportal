@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 import magic
 from django.utils.deconstruct import deconstructible
 from django.template.defaultfilters import filesizeformat
-from constants import FACULTY_DOMAINS, STUDENT_DOMAINS
+from .constants import FACULTY_DOMAINS, STUDENT_DOMAINS
 
 
 def institute_email_validator(value):
