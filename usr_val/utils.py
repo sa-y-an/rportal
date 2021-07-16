@@ -14,6 +14,9 @@ def institute_email_validator(value):
     parts = domain.split('.')
     if len(parts) != 4:
         raise ValidationError('Not a valid Institute email ID.')
+    sub_domain = parts[0]
+    if (sub_domain not in FACULTY_DOMAINS) and (sub_domain not in STUDENT_DOMAINS):
+        raise ValidationError('Institute email not valid. If you feel it is right, please contact the administrator.')
     return email
 
 
@@ -25,7 +28,7 @@ def get_group_name(email):
             raise Exception('Email ID not valid')
     except IndexError:
         return 'teacher'
-    
+
     if parts[0] in STUDENT_DOMAINS:
         return 'student'
     return 'teacher'
