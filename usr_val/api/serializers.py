@@ -99,3 +99,34 @@ class StudentSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 
+class TeacherRegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Teacher
+        exclude = ['user', ]
+
+    def save(self):
+        try:
+            request = self.context.get('request')
+            user = request.user
+        except Exception as e:
+            raise serializers.ValidationError('Could not get the user')
+
+        if user.groups.first().name != 'teacher':  # checks if the user is actually a teacher
+            raise serializers.ValidationError('Student cannot create Teacher profile.')
+
+        if Teacher.objects.filter(user=user).exists():
+            raise serializers.ValidationError('Teacher profile already exists.')
+        teacher = Teacher(
+            user=user,
+            branch=self.validated_data['branch'],
+            contact=self.validated_data.get('contact'),
+        )
+        teacher.save()
+        return teacher
+
+
+class TeacherSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Teacher
+        fields = ['user', 'branch', 'contact']
