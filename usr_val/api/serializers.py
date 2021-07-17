@@ -55,7 +55,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'groups','id']
+        fields = ['username', 'first_name', 'last_name', 'email', 'groups', 'id']
 
 
 class StudentRegistrationSerializer(serializers.ModelSerializer):
@@ -63,26 +63,26 @@ class StudentRegistrationSerializer(serializers.ModelSerializer):
                                max_length=100,
                                required=False,
                                use_url=True,
-                               validators=[FileValidator(content_types=('application/pdf',),max_size=1024*1024)]
+                               validators=[FileValidator(content_types=('application/pdf',), max_size=1024 * 1024)]
                                )
 
     class Meta:
-        model=Student
-        exclude=['user',]
+        model = Student
+        exclude = ['user', ]
 
     def save(self):
         try:
-            request=self.context.get('request')
-            user=request.user
+            request = self.context.get('request')
+            user = request.user
         except Exception as e:
             raise serializers.ValidationError('Could not get user')
 
-        if user.groups.first().name!='student':  # checks if the user is actually a student
+        if user.groups.first().name != 'student':  # checks if the user is actually a student
             raise serializers.ValidationError('Teacher cannot create Student profile.')
 
         if Student.objects.filter(user=user).exists():
             raise serializers.ValidationError('Profile already exists.')
-        student=Student(
+        student = Student(
             user=user,
             branch=self.validated_data['branch'],
             contact=self.validated_data.get('contact'),
@@ -96,8 +96,8 @@ class StudentSerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
     class Meta:
-        model=Student
-        fields='__all__'
+        model = Student
+        fields = '__all__'
 
 
 class TeacherRegistrationSerializer(serializers.ModelSerializer):
