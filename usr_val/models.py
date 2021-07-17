@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import post_save
 from django.core.validators import FileExtensionValidator
 from .constants import (
     DEPARTMENTS,
@@ -28,10 +28,10 @@ class Teacher(models.Model):
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     branch = models.CharField(max_length=4, choices=DEPARTMENTS)
-    contact = models.CharField(blank=True,null=True, max_length=15)
+    contact = models.CharField(blank=True, null=True, max_length=15)
     cv = models.FileField(null=True,
                           upload_to=cv_upload_location,
-                          validators=[FileExtensionValidator(allowed_extensions=['pdf',])],
+                          validators=[FileExtensionValidator(allowed_extensions=['pdf', ])],
                           max_length=255
                           )
 
@@ -47,8 +47,8 @@ def post_save_userGroup(sender, instance, *args, **kwargs):
         if instance.is_superuser:
             group_name = 'teacher'
         else:
-            group_name=get_group_name(instance.email)
-        group=Group.objects.get(name=group_name)
+            group_name = get_group_name(instance.email)
+        group = Group.objects.get(name=group_name)
         instance.groups.add(group)
 
 

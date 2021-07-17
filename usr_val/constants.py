@@ -16,7 +16,7 @@ DEPARTMENTS = [
     ('PH', 'PH')
 ]
 
-FACULTY_DOMAINS=(
+FACULTY_DOMAINS = (
     'bt',
     'ce',
     'che',
@@ -33,7 +33,7 @@ FACULTY_DOMAINS=(
     'phy',
 )
 
-STUDENT_DOMAINS=(
+STUDENT_DOMAINS = (
     'btech',
     'mtech',
     'phd',
