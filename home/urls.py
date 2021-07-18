@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-from rest_framework.schemas import get_schema_view
+
 
 app_name = 'home'
 
@@ -11,13 +11,5 @@ urlpatterns = [
     path('mile/', views.mile , name= 'mile'),
     path('team/', views.team , name= 'team'),
 
-    ## Api Documentation 
-
-    path('schema', get_schema_view(
-        title="RpBackendAPI",
-        description="API for the Research Portal",
-        version="1.0.0"
-    ), name='openapi-schema'),
-
-
-]
+    
+    ]

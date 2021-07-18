@@ -7,6 +7,9 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+
+from rest_framework.schemas import get_schema_view
+from rest_framework.documentation import include_docs_urls
 # import home
 
 urlpatterns = [
@@ -37,6 +40,17 @@ urlpatterns = [
     path('reset_password_complete/', 
     auth_views.PasswordResetCompleteView.as_view(template_name="usr_val/password_reset_done.html"), 
     name="password_reset_complete"),
+
+
+
+    ## Api Documentation 
+
+    path('docs/', include_docs_urls(title='RpBackendAPI')),
+    path('schema/', get_schema_view(
+        title="RpBackendAPI",
+        description="API for the Research Portal",
+        version="1.0.0"
+    ), name='openapi-schema'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

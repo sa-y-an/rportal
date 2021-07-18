@@ -83,6 +83,9 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 5,
 }
 
+REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
+
+
 # JWT SETTINGS
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=6),  # TO BE REDUCED
