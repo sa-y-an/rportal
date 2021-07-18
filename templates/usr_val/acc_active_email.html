@@ -1,0 +1,10 @@
+{% autoescape off %}
+Hi {{ user.username }},
+Please click on the link to confirm your email address,
+http://{{ domain }}{% url 'usr_val:activate' uidb64=uid token=token %}
+
+On clicking this link you will be asked to make a profile.
+If you don't create a profile then you can't post  or view others' profiles.
+
+If you did not initialise this action,then please DO NOT CLICK on this link.
+{% endautoescape %}
