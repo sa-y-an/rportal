@@ -1,9 +1,24 @@
+import threading
 from rest_framework import serializers
 from django.core.exceptions import ValidationError
 import magic
 from django.utils.deconstruct import deconstructible
 from django.template.defaultfilters import filesizeformat
+from django.core.mail import EmailMessage
 from .constants import FACULTY_DOMAINS, STUDENT_DOMAINS
+import six
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+
+
+class TokenGenerator(PasswordResetTokenGenerator):
+    def _make_hash_value(self, user, timestamp):
+        return (
+            six.text_type(user.pk) + six.text_type(timestamp) +
+            six.text_type(user.is_active)
+        )
+
+
+account_activation_token = TokenGenerator()
 
 
 def institute_email_validator(value):
@@ -93,3 +108,13 @@ class FileValidator(object):
                 self.min_size == other.min_size and
                 self.content_types == other.content_types
         )
+
+
+class ThreadedMailing(threading.Thread):
+    def __init__(self, email: EmailMessage, fail_silently=True):
+        self.email_msg = email
+        self.fail_silently = fail_silently
+        threading.Thread.__init__(self)
+
+    def run(self):
+        self.email_msg.send(fail_silently=self.fail_silently)
