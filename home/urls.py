@@ -10,4 +10,6 @@ urlpatterns = [
     path('director/', views.director , name= 'director'),
     path('mile/', views.mile , name= 'mile'),
     path('team/', views.team , name= 'team'),
-]
+
+    
+    ]
