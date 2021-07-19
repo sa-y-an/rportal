@@ -111,3 +111,25 @@ class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
         fields = '__all__'
+
+
+class RetrieveUpdateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', ]
+
+
+class RetrieveUpdateStudentSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = Student
+        fields = '__all__'
+
+
+class RetrieveUpdateTeacherSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = Teacher
+        fields = '__all__'
