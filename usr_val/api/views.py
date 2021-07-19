@@ -42,8 +42,8 @@ class RegistrationView(CreateAPIView):
             message,
             to=[to_email,]
         )
-        threaded_mail=ThreadedMailing(mail)
-        threaded_mail.start()
+        # threaded_mail=ThreadedMailing(mail)
+        # threaded_mail.start()
 
 
 class StudentRegistrationView(CreateAPIView):
