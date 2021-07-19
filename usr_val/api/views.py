@@ -1,8 +1,9 @@
 from django.contrib.auth.models import User
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.generics import (
     CreateAPIView,
     ListAPIView,
+    RetrieveUpdateAPIView,
 )
 from rest_framework.serializers import ValidationError
 from .serializers import (
@@ -12,6 +13,9 @@ from .serializers import (
     StudentSerializer,
     TeacherRegistrationSerializer,
     TeacherSerializer,
+    RetrieveUpdateUserSerializer,
+    RetrieveUpdateStudentSerializer,
+    RetrieveUpdateTeacherSerializer,
 )
 from usr_val.models import Student, Teacher
 from usr_val.utils import account_activation_token, ThreadedMailing
@@ -94,3 +98,64 @@ class AllTeachersView(ListAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
     permission_classes = (IsAdminUser,)
+
+
+class BaseRetrieveUpdateView(RetrieveUpdateAPIView):
+    permission_classes = (IsAuthenticated,)
+    lookup_url_kwarg = 'username'
+
+    def check_update_permissions(self, request, *args, **kwargs):
+        user = request.user
+        obj = self.get_object()
+        if not user == obj:
+            raise ValidationError("Can not change someone else's account!")
+        return True
+
+    def put(self, request, *args, **kwargs):
+        _ = self.check_update_permissions(request, *args, **kwargs)
+        return self.update(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        _ = self.check_update_permissions(request, *args, **kwargs)
+        return self.partial_update(request, *args, **kwargs)
+
+
+class RetrieveUpdateUserView(BaseRetrieveUpdateView):
+    queryset = User.objects.all()
+    serializer_class = RetrieveUpdateUserSerializer
+    lookup_field = 'username'
+
+    def check_update_permissions(self, request, *args, **kwargs):
+        user = request.user
+        obj = self.get_object()
+        if not user == obj:
+            raise ValidationError("Can not change someone else's account!")
+        return True
+
+
+class RetrieveUpdateStudentView(BaseRetrieveUpdateView):
+    queryset = Student.objects.all()
+    serializer_class = RetrieveUpdateStudentSerializer
+    lookup_field = 'user__username'
+
+    def check_update_permissions(self, request, *args, **kwargs):
+        user = request.user
+        obj = self.get_object()
+        if not user == obj.user:
+            raise ValidationError("Can not change someone else's Student account!")
+        return True
+
+
+class RetrieveUpdateTeacherView(BaseRetrieveUpdateView):
+    queryset = Teacher.objects.all()
+    serializer_class = RetrieveUpdateTeacherSerializer
+    lookup_field = 'user__username'
+
+    def check_update_permissions(self, request, *args, **kwargs):
+        user = request.user
+        obj = self.get_object()
+        if not user == obj.user:
+            raise ValidationError("Can not change someone else's Faculty account!")
+        return True
+
+
