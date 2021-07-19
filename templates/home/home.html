@@ -27,19 +27,33 @@
         </div>
       </div>
       <div class="container">
-        <h3>
-          For API End points click below
-        </h3>
+        <p>
+          To know more on the structure of API click any of the buttons below.
+        </p>
 
-        <a href="https://docs.google.com/spreadsheets/d/1p6h1TyC6oKZU6xzXB7wtq5S0uqh7slt-dPO5IM8xyqU/edit?usp=sharing" target="_blank">
-          <div class="btn btn-primary"> API Doc(Spreadsheet)</div>
-        </a>
-          <br>
-          <br>
-        <a href="https://documenter.getpostman.com/view/12408668/TzmBEuGU" target="_blank">
-            <div class="btn btn-primary"> API Doc(Postman)</div>
-        </a>
+        <div class="container">
+
+          <a href="https://docs.google.com/spreadsheets/d/1p6h1TyC6oKZU6xzXB7wtq5S0uqh7slt-dPO5IM8xyqU/edit?usp=sharing" target="_blank">
+            <div class="btn btn-success"> API Doc(Spreadsheet)</div>
+          </a>
+            
+          <a href="https://documenter.getpostman.com/view/12408668/TzmBEuGU" target="_blank">
+              <div class="btn btn-danger"> API Doc(Postman)</div>
+          </a>
+  
+          <a href="{% url 'openapi-schema' %}" target="_blank"> <div class="btn btn-secondary"> Schema </div></a>
+
+          <a href="docs/" target="_blank"> <div class="btn btn-primary"> Documentation </div></a>
+
+        </div>
+
 
       </div>
+
+    <div class="fixed-bottom">
+        <div class="container text-center">
+          &copy; IEEE SB NITD 2021
+        </div>
+    </div>
 
     </div>
