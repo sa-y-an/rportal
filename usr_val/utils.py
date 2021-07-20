@@ -8,13 +8,16 @@ from django.core.mail import EmailMessage
 from .constants import FACULTY_DOMAINS, STUDENT_DOMAINS
 import six
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
 
 
 class TokenGenerator(PasswordResetTokenGenerator):
     def _make_hash_value(self, user, timestamp):
         return (
-            six.text_type(user.pk) + six.text_type(timestamp) +
-            six.text_type(user.is_active)
+                six.text_type(user.pk) + six.text_type(timestamp) +
+                six.text_type(user.is_active)
         )
 
 
@@ -118,3 +121,24 @@ class ThreadedMailing(threading.Thread):
 
     def run(self):
         self.email_msg.send(fail_silently=self.fail_silently)
+
+
+def sendVerificationEmail(domain, user, *args, **kwargs):
+    if domain is None or user is None:
+        raise ValidationError('Domain/User instance not provided')
+    mail_subject = 'Activate your IEEE Research Portal account.'
+    message = render_to_string('usr_val/acc_active_email.html', {
+        'first_name': user.first_name,
+        'domain': domain,
+        'uid': urlsafe_base64_encode(force_bytes(user.id)),
+        'token': account_activation_token.make_token(user),
+    })
+    to_email = user.email
+    mail = EmailMessage(
+        mail_subject,
+        message,
+        to=[to_email, ]
+    )
+    threaded_mail = ThreadedMailing(mail)
+    threaded_mail.start()
+    return message
