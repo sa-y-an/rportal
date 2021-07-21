@@ -1,5 +1,8 @@
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.decorators import api_view, throttle_classes
+from rest_framework.throttling import AnonRateThrottle
+from rest_framework.response import Response
 from rest_framework.generics import (
     CreateAPIView,
     ListAPIView,
@@ -18,36 +21,18 @@ from .serializers import (
     RetrieveUpdateTeacherSerializer,
 )
 from usr_val.models import Student, Teacher
-from usr_val.utils import account_activation_token, ThreadedMailing
-from django.core.mail import EmailMessage
+from usr_val.utils import sendVerificationEmail
 from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
 
 
 class RegistrationView(CreateAPIView):
     serializer_class = RegistrationSerializer
 
-    def perform_create(self,serializer):
-        user=serializer.save()
+    def perform_create(self, serializer):
+        user = serializer.save()
         current_site = get_current_site(self.request)
-
-        mail_subject = 'Activate your IEEE Research Portal account.'
-        message = render_to_string('usr_val/acc_active_email.html', {
-            'user': user,
-            'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(user.id)),
-            'token': account_activation_token.make_token(user),
-        })
-        to_email=serializer.validated_data['email']
-        mail=EmailMessage(
-            mail_subject,
-            message,
-            to=[to_email,]
-        )
-        # threaded_mail=ThreadedMailing(mail)
-        # threaded_mail.start()
+        msg = sendVerificationEmail(domain=current_site.domain, user=user)
+        # print(msg)
 
 
 class StudentRegistrationView(CreateAPIView):
@@ -57,7 +42,7 @@ class StudentRegistrationView(CreateAPIView):
         context = super(StudentRegistrationView, self).get_serializer_context()
         context.update({"request": self.request})
         return context
-    
+
     def perform_create(self,serializer):
         try:
             user = self.request.user
@@ -159,3 +144,20 @@ class RetrieveUpdateTeacherView(BaseRetrieveUpdateView):
         return True
 
 
+@api_view(['POST', ])
+@throttle_classes([AnonRateThrottle, ])
+def resendVerificationView(request):
+    data = request.data
+    email = data.get('email')
+    if email is None:
+        raise ValidationError('Email must be provided.')
+    response = {'msg': 'If the provided email exists, then the verification email is being sent.'}
+    inactive_users = User.objects.filter(is_active=False)
+    users = inactive_users.filter(email=email)
+    if not users.exists():
+        return Response(data={'msg': "You either have activated account or you haven't created account yet"})
+    domain = get_current_site(request).domain
+
+    msg = sendVerificationEmail(domain=domain, user=users.first())
+    # print(msg)
+    return Response(data=response)
