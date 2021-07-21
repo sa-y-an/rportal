@@ -139,6 +139,9 @@ def sendVerificationEmail(domain, user, *args, **kwargs):
         message,
         to=[to_email, ]
     )
-    threaded_mail = ThreadedMailing(mail)
-    threaded_mail.start()
+
+    # UNCOMMENT BELOW LINES TO SEND EMAIL
+    # threaded_mail = ThreadedMailing(mail)
+    # threaded_mail.start()
+
     return message
