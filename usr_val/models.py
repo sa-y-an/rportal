@@ -34,6 +34,8 @@ class Student(models.Model):
                           validators=[FileExtensionValidator(allowed_extensions=['pdf', ])],
                           max_length=255
                           )
+    
+    sop = models.TextField(default=" Please write what inspires you. ", max_length=1000)
 
     def __str__(self):
         return self.user.username
