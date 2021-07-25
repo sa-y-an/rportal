@@ -26,9 +26,11 @@ class Teacher(models.Model):
 
 
 class Student(models.Model):
+    dp = models.FileField(blank=True, upload_to="students/dp")
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     branch = models.CharField(max_length=4, choices=DEPARTMENTS)
     contact = models.CharField(blank=True, null=True, max_length=15)
+    cgpa = models.FloatField(default= 00.00)
     cv = models.FileField(null=True,
                           upload_to=cv_upload_location,
                           validators=[FileExtensionValidator(allowed_extensions=['pdf', ])],
