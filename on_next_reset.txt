@@ -1,1 +1,2 @@
-1. set not null of slug = false
+1. set blank of slug = false and unique = True
+2. set blank of CGPA to false 
