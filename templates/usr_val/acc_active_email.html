@@ -1,5 +1,5 @@
 {% autoescape off %}
-Hi {{ user.username }},
+Hi {{ first_name }},
 Please click on the link to confirm your email address,
 http://{{ domain }}{% url 'usr_val:activate' uidb64=uid token=token %}
 

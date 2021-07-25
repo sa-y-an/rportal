@@ -44,7 +44,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
             email=self.validated_data['email'].lower(),
             first_name=self.validated_data['first_name'],
             last_name=self.validated_data['last_name'],
-            is_active=False  # TO BE CHANGED TO FALSE
+            is_active=True  # TO BE CHANGED TO FALSE
         )
         account.set_password(password)
         account.save()
@@ -106,6 +106,28 @@ class TeacherRegistrationSerializer(serializers.ModelSerializer):
 
 
 class TeacherSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = Teacher
+        fields = '__all__'
+
+
+class RetrieveUpdateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', ]
+
+
+class RetrieveUpdateStudentSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
+    class Meta:
+        model = Student
+        fields = '__all__'
+
+
+class RetrieveUpdateTeacherSerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
     class Meta:
