@@ -128,14 +128,23 @@ WSGI_APPLICATION = 'Researchportal.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ieeenitdgp$Researchportal',
-        'USER': 'ieeenitdgp',
-        'PASSWORD': 'Database2021',
-        'HOST': 'ieeenitdgp.mysql.pythonanywhere-services.com',
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': env("DB_USER"),
+
+        'USER': env("DB_USER"),
+
+        'PASSWORD': env("DB_PASSWORD"),
+
+        'HOST': env("DB_HOST"),
+
     }
+
 }
+
 
 
 
