@@ -56,4 +56,4 @@ def post_save_userGroup(sender, instance, *args, **kwargs):
         instance.groups.add(group)
 
 
-post_save.connect(post_save_userGroup, sender=User)
+# post_save.connect(post_save_userGroup, sender=User)
