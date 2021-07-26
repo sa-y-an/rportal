@@ -20,6 +20,12 @@ def cv_upload_location(instance, filename, **kwargs):
 
 
 class Teacher(models.Model):
+
+    avatar = models.ImageField(upload_to='avatars', default = 'default/einstein.jpg' )
+    avatar_thumbnail = ImageSpecField(source='avatar',
+                                      processors=[ResizeToFill(100, 50)],
+                                      format='JPEG',
+                                      options={'quality': 60})
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     branch = models.CharField(max_length=4, choices=DEPARTMENTS)
     contact = models.CharField(blank=True, max_length=15)
@@ -35,6 +41,7 @@ class Teacher(models.Model):
 
 
 class Student(models.Model):
+
     avatar = models.ImageField(upload_to='avatars', default = 'default/einstein.jpg' )
     avatar_thumbnail = ImageSpecField(source='avatar',
                                       processors=[ResizeToFill(100, 50)],
@@ -50,8 +57,6 @@ class Student(models.Model):
                           max_length=255
                           )
 
-    research_statement = models.TextField(default=" Please write what inspires you. ", max_length=1000)
-
     def __str__(self):
         return self.user.username
 
@@ -60,6 +65,42 @@ class Student(models.Model):
 
     class Meta:
         ordering = ('id',)
+
+
+
+
+class ResearchStatement(models.Model) :
+    " a one to one model with Student  this allows drafting the statement before Submitting "
+
+    class PostObjects(models.Manager):
+        " Function to return only published models "
+        def get_queryset(self):
+            return super().get_queryset() .filter(status='published')
+
+    
+    options = (
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+    )
+
+    research_statement = models.TextField(default=" Please write what inspires you to do Research ", max_length=1000)
+    student = models.ForeignKey(Student, on_delete= models.CASCADE)
+
+    status = models.CharField(
+        max_length=10, choices=options, default='published')
+    objects = models.Manager()  # default manager
+    postobjects = PostObjects()  # custom manager
+
+
+    def __str__(self):
+        return self.user.username
+
+
+
+
+
+
+
 
 
 def post_save_userGroup(sender, instance, *args, **kwargs):
