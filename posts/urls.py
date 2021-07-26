@@ -6,7 +6,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 app_name = 'posts'
 
 urlpatterns = [
-    path('', views.feed, name = 'feed'),
+    path('', views.PostPublishedList.as_view(), name = 'feed'),
     path('allposts', views.PostList.as_view(), name='post_list'),
     path('<int:pk>', views.PostDetail.as_view(), name='post_detail')
 ]

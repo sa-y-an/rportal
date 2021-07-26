@@ -35,7 +35,7 @@ class Student(models.Model):
     dp = models.FileField(blank=True,
                           null=True,
                           upload_to="students/dp",
-                          validators=[FileExtensionValidator(allowed_extensions=['png', ], )],
+                          validators=[FileExtensionValidator(allowed_extensions=['png', '.jpg', '.jpeg', ], )],
                           max_length=255
                           )
     user = models.OneToOneField(User, on_delete=models.CASCADE)

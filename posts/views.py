@@ -1,15 +1,21 @@
 from django.shortcuts import render
 from django.http import Http404
+from django.views import generic
 from .models import Post
-from .serializers import PostSerializer
+from .serializers import PostSerializer, PostPublishedSerializer
+from rest_framework import generics
+
 
 from rest_framework import status, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-def feed(request):
-    posts = Post.objects.all()
-    return render(request, "posts/feed.html", {'posts': posts})
+
+class PostPublishedList(generics.ListAPIView):
+    queryset = Post.postobjects.all()
+    serializer_class = PostPublishedSerializer
+
+
 
 class PostList(APIView):
     'List all posts or create a new post'
