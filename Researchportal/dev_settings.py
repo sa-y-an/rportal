@@ -10,7 +10,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = env("DEBUG")
+DEBUG = False
 
 UPLOADED_FILES_USE_URL = True
 
@@ -36,7 +36,10 @@ INSTALLED_APPS = [
     # third party
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders'
+    'corsheaders',
+
+    # image field
+    'imagekit',
 ]
 
 MIDDLEWARE = [

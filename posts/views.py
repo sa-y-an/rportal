@@ -12,6 +12,7 @@ from rest_framework.response import Response
 
 
 class PostPublishedList(generics.ListAPIView):
+    " Returns Only Published Posts "
     queryset = Post.postobjects.all()
     serializer_class = PostPublishedSerializer
 

@@ -3,6 +3,9 @@ from usr_val.models import Teacher, Student
 from django.core.validators import FileExtensionValidator
 from django.utils import timezone
 
+# used for image toolkit
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 # Create your models here.
 # static questions containing only text and images
@@ -11,6 +14,7 @@ from django.utils import timezone
 class Post(models.Model):
 
     class PostObjects(models.Manager):
+        " Function to return only published models "
         def get_queryset(self):
             return super().get_queryset() .filter(status='published')
 
@@ -28,13 +32,23 @@ class Post(models.Model):
                           validators=[FileExtensionValidator(allowed_extensions=['pdf', ])],
                           max_length=255
                           )
-    image_url = models.URLField(blank=True)
     tag = models.TextField(blank=True, default='open to all')
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     student = models.ManyToManyField(Student, blank=True)
     is_active = models.BooleanField(default=False)
 
-    ## 
+    ## Image 
+
+    avatar = models.ImageField(upload_to='avatars', default = '../static/defaults/project.png' )
+    avatar_thumbnail = ImageSpecField(source='avatar',
+                                      processors=[ResizeToFill(100, 50)],
+                                      format='JPEG',
+                                      options={'quality': 60})
+
+
+
+
+    ## Draft & Publish
 
     slug = models.SlugField(max_length=250, unique_for_date='published',blank= True)
     published = models.DateTimeField(default=timezone.now)
