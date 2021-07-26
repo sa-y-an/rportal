@@ -7,6 +7,9 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from django.urls import re_path
+from django.views.static import serve
+
 
 from rest_framework.schemas import get_schema_view
 from rest_framework.documentation import include_docs_urls
@@ -40,6 +43,12 @@ urlpatterns = [
     path('reset_password_complete/', 
     auth_views.PasswordResetCompleteView.as_view(template_name="usr_val/password_reset_done.html"), 
     name="password_reset_complete"),
+
+    # workaround for media
+
+    re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+
 
 
 
