@@ -130,10 +130,11 @@ WSGI_APPLICATION = 'Researchportal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ieeenitdgp$Researchportal',
+        'NAME': 'ieeenitdgp$default',
         'USER': 'ieeenitdgp',
         'PASSWORD': 'Database2021',
         'HOST': 'ieeenitdgp.mysql.pythonanywhere-services.com',
+        'OPTIONS' : { 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'" }
     }
 }
 
