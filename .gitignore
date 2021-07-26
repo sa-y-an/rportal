@@ -9,3 +9,5 @@ media
 .vscode
 *.env
 myenv
+staticfiles
+static
