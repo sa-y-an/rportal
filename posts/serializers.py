@@ -9,6 +9,10 @@ class PostSerializer(serializers.ModelSerializer):
 
 class PostPublishedSerializer(serializers.ModelSerializer):
 
+    avatar_thumbnail = serializers.ImageField(read_only=True)
+
+
     class Meta:
-        fields = ( 'title', 'description', 'tag', 'teacher', 'published', 'avatar')
+        fields = ( 'title', 'description', 'tag', 'teacher', 'published', 'avatar_thumbnail')
+        
         model = Post
