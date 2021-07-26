@@ -32,17 +32,22 @@ class Teacher(models.Model):
 
 
 class Student(models.Model):
-    dp = models.FileField(blank=True, upload_to="students/dp")
+    dp = models.FileField(blank=True,
+                          null=True,
+                          upload_to="students/dp",
+                          validators=[FileExtensionValidator(allowed_extensions=['png', ], )],
+                          max_length=255
+                          )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     branch = models.CharField(max_length=4, choices=DEPARTMENTS)
     contact = models.CharField(blank=True, null=True, max_length=15)
-    cgpa = models.FloatField(default= 00.00)
+    cgpa = models.FloatField(default=00.00)
     cv = models.FileField(null=True,
                           upload_to=cv_upload_location,
                           validators=[FileExtensionValidator(allowed_extensions=['pdf', ])],
                           max_length=255
                           )
-    
+
     sop = models.TextField(default=" Please write what inspires you. ", max_length=1000)
 
     def __str__(self):
