@@ -65,6 +65,12 @@ class StudentRegistrationSerializer(serializers.ModelSerializer):
                                use_url=True,
                                validators=[FileValidator(content_types=('application/pdf',), max_size=1024 * 1024)]
                                )
+    dp = serializers.FileField(allow_null=True,
+                               max_length=100,
+                               required=False,
+                               use_url=True,
+                               validators=[FileValidator(content_types=('application/png',), max_size=1024 * 1024)]
+                               )
 
     class Meta:
         model = Student
@@ -83,26 +89,6 @@ class TeacherRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
         exclude = ['user', ]
-
-    def save(self):
-        try:
-            request = self.context.get('request')
-            user = request.user
-        except Exception as e:
-            raise serializers.ValidationError('Could not get the user')
-
-        if user.groups.first().name != 'teacher':  # checks if the user is actually a teacher
-            raise serializers.ValidationError('Student cannot create Teacher profile.')
-
-        if Teacher.objects.filter(user=user).exists():
-            raise serializers.ValidationError('Teacher profile already exists.')
-        teacher = Teacher(
-            user=user,
-            branch=self.validated_data['branch'],
-            contact=self.validated_data.get('contact'),
-        )
-        teacher.save()
-        return teacher
 
 
 class TeacherSerializer(serializers.ModelSerializer):
