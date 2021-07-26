@@ -24,6 +24,12 @@ class Teacher(models.Model):
     def __str__(self):
         return self.user.username
 
+    def get_group_name(self):
+        return self.user.groups.first()
+
+    class Meta:
+        ordering = ('id',)
+
 
 class Student(models.Model):
     dp = models.FileField(blank=True, upload_to="students/dp")
@@ -45,6 +51,9 @@ class Student(models.Model):
     def get_group_name(self):
         return self.user.groups.first()
 
+    class Meta:
+        ordering = ('id',)
+
 
 def post_save_userGroup(sender, instance, *args, **kwargs):
     if not instance.groups.exists():
@@ -52,7 +61,7 @@ def post_save_userGroup(sender, instance, *args, **kwargs):
             group_name = 'teacher'
         else:
             group_name = get_group_name(instance.email)
-        group = Group.objects.get(name=group_name)
+        group, created = Group.objects.get_or_create(name=group_name)
         instance.groups.add(group)
 
 
