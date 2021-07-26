@@ -133,7 +133,7 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': env("DB_USER"),
+        'NAME': env("DB_NAME"),
 
         'USER': env("DB_USER"),
 
