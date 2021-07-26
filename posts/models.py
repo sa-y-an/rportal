@@ -34,7 +34,8 @@ class Post(models.Model):
                           )
     tag = models.TextField(blank=True, default='open to all')
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    student = models.ManyToManyField(Student, blank=True)
+    student = models.ManyToManyField(Student, blank=True, related_name= "applied_students")
+    selected = models.ForeignKey(Student, null=True, blank= True, on_delete = models.CASCADE, related_name= "selected_students")
     is_active = models.BooleanField(default=False)
 
     ## Image 
