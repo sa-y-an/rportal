@@ -1,37 +1,22 @@
 from pathlib import Path
 import os
-import dj_database_url
-import django_heroku
-import psycopg2
+import environ
 from datetime import timedelta
+env = environ.Env()
+environ.Env.read_env()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+SECRET_KEY = env("SECRET_KEY")
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ['DEBUG']
-
-ALLOWED_HOSTS = ['https://ieee-rportal1.herokuapp.com/']
-
-CORS_ALLOW_ALL_ORIGINS = False
-
-CORS_ALLOWED_ORIGINS = [
-    "https://ieeerp.netlify.app/",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
-
-
+DEBUG = env("DEBUG")
 
 UPLOADED_FILES_USE_URL = True
+
+ALLOWED_HOSTS = ['*']
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Application definition
@@ -85,26 +70,6 @@ TEMPLATES = [
     },
 ]
 
-
-WSGI_APPLICATION = 'Researchportal.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-
-DATABASE_URL = os.environ['DATABASE_URL']
-
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-
-DATABASES = {}
-
-DATABASES['default'] = dj_database_url.config(
-    conn_max_age=600, ssl_require=True)
-
-
-
-
 # REST FRAMEWORK settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -128,7 +93,7 @@ REST_FRAMEWORK = {
 
 # JWT SETTINGS
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=6),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=6),  # TO BE REDUCED
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -156,8 +121,18 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
+WSGI_APPLICATION = 'Researchportal.wsgi.application'
 
 
+# Database
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation
@@ -177,11 +152,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
-
-
-
 
 
 # Internationalization
@@ -220,21 +190,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
-
-
-
 # Email Backend
 
 
-#SMTP Configuration
+# SMTP Configuration
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'ieeesbnitd@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ['PASSWORD']
-
-
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("PASSWORD")
