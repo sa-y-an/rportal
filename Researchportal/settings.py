@@ -21,7 +21,15 @@ DEBUG = os.environ['DEBUG']
 
 ALLOWED_HOSTS = ['https://ieee-rportal1.herokuapp.com/']
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
+
+CORS_ALLOWED_ORIGINS = [
+    "https://ieeerp.netlify.app/",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+
 
 UPLOADED_FILES_USE_URL = True
 

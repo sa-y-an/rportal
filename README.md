@@ -56,6 +56,12 @@ python local.py runserver
 
 ## Contribution Guidelines 
 
+Before making a migration run 
+```
+python local.py makemigrations --dry-run --verbosity 3
+```
+to make sure if it breaks any thing
+
 - Fork this Repo
 - Create a branch in the forked repo 
 ```
