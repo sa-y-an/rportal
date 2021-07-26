@@ -80,6 +80,8 @@ class StudentRegistrationSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
+    avatar_thumbnail = serializers.ImageField(read_only=True)
+
     class Meta:
         model = Student
         fields = '__all__'
@@ -106,6 +108,7 @@ class RetrieveUpdateUserSerializer(serializers.ModelSerializer):
 
 
 class RetrieveUpdateStudentSerializer(serializers.ModelSerializer):
+    avatar_thumbnail = serializers.ImageField(read_only=True)
     user = UserSerializer()
 
     class Meta:

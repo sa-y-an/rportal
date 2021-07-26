@@ -6,6 +6,9 @@ from .constants import (
     DEPARTMENTS,
 )
 from .utils import get_group_name
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
+
 
 
 def cv_upload_location(instance, filename, **kwargs):
@@ -32,12 +35,11 @@ class Teacher(models.Model):
 
 
 class Student(models.Model):
-    dp = models.FileField(blank=True,
-                          null=True,
-                          upload_to="students/dp",
-                          validators=[FileExtensionValidator(allowed_extensions=['png', '.jpg', '.jpeg', ], )],
-                          max_length=255
-                          )
+    avatar = models.ImageField(upload_to='avatars', default = 'default/einstein.jpg' )
+    avatar_thumbnail = ImageSpecField(source='avatar',
+                                      processors=[ResizeToFill(100, 50)],
+                                      format='JPEG',
+                                      options={'quality': 60})
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     branch = models.CharField(max_length=4, choices=DEPARTMENTS)
     contact = models.CharField(blank=True, null=True, max_length=15)
