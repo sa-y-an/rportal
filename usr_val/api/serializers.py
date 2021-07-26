@@ -65,6 +65,12 @@ class StudentRegistrationSerializer(serializers.ModelSerializer):
                                use_url=True,
                                validators=[FileValidator(content_types=('application/pdf',), max_size=1024 * 1024)]
                                )
+    dp = serializers.FileField(allow_null=True,
+                               max_length=100,
+                               required=False,
+                               use_url=True,
+                               validators=[FileValidator(content_types=('application/png',), max_size=1024 * 1024)]
+                               )
 
     class Meta:
         model = Student
