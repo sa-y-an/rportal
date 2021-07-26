@@ -7,4 +7,4 @@ sudo apt-get install libmagic1
 python local.py makemigrations --dry-run --verbosity 3
 ```
 
-> student teacher
+> student teacher (groups)
