@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.base import Model
 from usr_val.models import Teacher, Student
 from django.core.validators import FileExtensionValidator
 from django.utils import timezone
@@ -65,3 +66,28 @@ class Post(models.Model):
         return self.title
 
     
+
+# SOP Model
+
+
+def cv_upload_location(instance, filename, **kwargs):
+    file_path = 'SOP/{username}.pdf'.format(username=instance.user.username)
+    return file_path
+
+
+
+class SOP(models.Model): 
+    " Every student would be able to submit different SOP for each project "
+
+    document = models.FileField(null=True,
+                          upload_to=cv_upload_location,
+                          validators=[FileExtensionValidator(allowed_extensions=['pdf', ])],
+                          max_length=255
+                          )
+    
+    student = models.ForeignKey( Student, on_delete=models.CASCADE )
+    post = models.ForeignKey( Post, on_delete=models.CASCADE)
+
+    def __str__(self) :
+        return self.student.user.username
+
