@@ -66,6 +66,20 @@ class TeacherRegistrationView(CreateAPIView):
         context.update({"request": self.request})
         return context
 
+    def perform_create(self, serializer):
+        try:
+            user = self.request.user
+        except Exception as e:
+            raise ValidationError('Could not get user')
+
+        if user.groups.first().name != 'teacher':  # checks if the user is actually a student
+            raise ValidationError('Student cannot create Teacher profile.')
+
+        if Student.objects.filter(user=user).exists():
+            raise ValidationError('Profile already exists.')
+
+        serializer.save(user=self.request.user)
+
 
 class AllUsersView(ListAPIView):
     queryset = User.objects.all()
