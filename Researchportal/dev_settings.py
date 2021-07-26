@@ -10,7 +10,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = False
+DEBUG = True
 
 UPLOADED_FILES_USE_URL = True
 

@@ -39,7 +39,7 @@ class Post(models.Model):
 
     ## Image 
 
-    avatar = models.ImageField(upload_to='avatars', default = '../static/defaults/project.png' )
+    avatar = models.ImageField(upload_to='avatars', default = 'default/project.png' )
     avatar_thumbnail = ImageSpecField(source='avatar',
                                       processors=[ResizeToFill(100, 50)],
                                       format='JPEG',
