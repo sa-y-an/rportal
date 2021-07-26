@@ -129,10 +129,14 @@ WSGI_APPLICATION = 'Researchportal.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ieeenitdgp$Researchportal',
+        'USER': 'ieeenitdgp',
+        'PASSWORD': 'Database2021',
+        'HOST': 'ieeenitdgp.mysql.pythonanywhere-services.com',
     }
 }
+
 
 
 # Password validation
