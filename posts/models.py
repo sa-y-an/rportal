@@ -29,6 +29,7 @@ class Post(models.Model):
     title = models.CharField(blank=True, max_length=200)
     description = models.TextField(blank=True, default=' Please provide a description ')
     details = models.FileField(null=True, 
+                          blank= True,
                           upload_to='post/details',
                           validators=[FileExtensionValidator(allowed_extensions=['pdf', ])],
                           max_length=255
@@ -80,6 +81,7 @@ class SOP(models.Model):
     " Every student would be able to submit different SOP for each project "
 
     document = models.FileField(null=True,
+                          blank= True,
                           upload_to=cv_upload_location,
                           validators=[FileExtensionValidator(allowed_extensions=['pdf', ])],
                           max_length=255

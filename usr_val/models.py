@@ -27,7 +27,7 @@ class Teacher(models.Model):
                                       format='JPEG',
                                       options={'quality': 60})
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    branch = models.CharField(max_length=4, choices=DEPARTMENTS)
+    branch = models.CharField(max_length=4, choices=DEPARTMENTS, blank= True)
     contact = models.CharField(blank=True, max_length=15)
 
     def __str__(self):
@@ -48,10 +48,11 @@ class Student(models.Model):
                                       format='JPEG',
                                       options={'quality': 60})
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    branch = models.CharField(max_length=4, choices=DEPARTMENTS)
+    branch = models.CharField(max_length=4, choices=DEPARTMENTS, blank= True)
     contact = models.CharField(blank=True, null=True, max_length=15)
     cgpa = models.FloatField(default=00.00)
     cv = models.FileField(null=True,
+                            blank=True,
                           upload_to=cv_upload_location,
                           validators=[FileExtensionValidator(allowed_extensions=['pdf', ])],
                           max_length=255
