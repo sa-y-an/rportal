@@ -59,6 +59,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class StudentRegistrationSerializer(serializers.ModelSerializer):
+
+    avatar_thumbnail = serializers.ImageField(read_only=True)
+
     cv = serializers.FileField(allow_null=True,
                                max_length=100,
                                required=False,
@@ -80,18 +83,25 @@ class StudentRegistrationSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
+    avatar_thumbnail = serializers.ImageField(read_only=True)
+
     class Meta:
         model = Student
         fields = '__all__'
 
 
 class TeacherRegistrationSerializer(serializers.ModelSerializer):
+    avatar_thumbnail = serializers.ImageField(read_only=True)
+
     class Meta:
         model = Teacher
         exclude = ['user', ]
 
 
 class TeacherSerializer(serializers.ModelSerializer):
+
+    avatar_thumbnail = serializers.ImageField(read_only=True)
+
     user = UserSerializer()
 
     class Meta:
@@ -106,6 +116,7 @@ class RetrieveUpdateUserSerializer(serializers.ModelSerializer):
 
 
 class RetrieveUpdateStudentSerializer(serializers.ModelSerializer):
+    avatar_thumbnail = serializers.ImageField(read_only=True)
     user = UserSerializer()
 
     class Meta:
@@ -114,6 +125,9 @@ class RetrieveUpdateStudentSerializer(serializers.ModelSerializer):
 
 
 class RetrieveUpdateTeacherSerializer(serializers.ModelSerializer):
+
+    avatar_thumbnail = serializers.ImageField(read_only=True)
+
     user = UserSerializer()
 
     class Meta:
