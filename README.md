@@ -8,4 +8,4 @@ sudo apt-get install libpq-dev
 python local.py makemigrations --dry-run --verbosity 3
 ```
 
-> student teacher (groups)
+> 2 Groups -> student teacher 
