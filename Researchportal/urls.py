@@ -18,7 +18,7 @@ from rest_framework.documentation import include_docs_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    path('projects/', include('posts.urls')),
+    path('api/projects/', include('posts.urls')),
     # path('users/', include('usr_val.urls')),
 
     # API URLs

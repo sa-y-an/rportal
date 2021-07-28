@@ -10,7 +10,6 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 
 
-
 def cv_upload_location(instance, filename, **kwargs):
     file_path = 'CVS/{username}.pdf'.format(username=instance.user.username)
     return file_path
@@ -57,6 +56,12 @@ class Student(models.Model):
                           validators=[FileExtensionValidator(allowed_extensions=['pdf', ])],
                           max_length=255
                           )
+    curr_project=models.ForeignKey('posts.Post',
+                                   null=True,
+                                   blank=True,
+                                   on_delete=models.SET_NULL,
+                                   related_name='current_project',
+                                   )
 
     def __str__(self):
         return self.user.username
