@@ -22,7 +22,7 @@ class Post(models.Model):
     class PostObjects(models.Manager):
         " Function to return only published models "
         def get_queryset(self):
-            return super().get_queryset() .filter(status='published')
+            return super().get_queryset() .filter(status='published',is_active=True)
 
     
     options = (
@@ -80,8 +80,7 @@ def cv_upload_location(instance, filename, **kwargs):
     return file_path
 
 
-
-class SOP(models.Model): 
+class SOP(models.Model):
     " Every student would be able to submit different SOP for each project "
 
     document = models.FileField(null=True,
@@ -93,7 +92,14 @@ class SOP(models.Model):
     
     student = models.ForeignKey( Student, on_delete=models.CASCADE )
     post = models.ForeignKey( Post, on_delete=models.CASCADE)
-    accepted = models.SmallIntegerField(default=0)  # 0 means applied(NA), -1 is Rejected, 1 is Accepted
+    accepted = models.SmallIntegerField(
+        default=0,
+        choices=[
+            (0, 'Applied'),
+            (-1, 'Rejected'),
+            (1, 'Accepted')
+        ]
+    )  # 0 means applied(NA), -1 is Rejected, 1 is Accepted
 
     def __str__(self) :
         return self.student.user.username
