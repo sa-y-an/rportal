@@ -73,3 +73,11 @@ class SOPSerializer(serializers.ModelSerializer):
         read_only_fields=('student', 'post')
 
 
+class AcceptanceSerializer(serializers.ModelSerializer):
+    stud_username=serializers.CharField(max_length=128)
+    accepted=serializers.ChoiceField(choices=[(0, 'Applied'), (-1, 'Rejected'), (1, 'Accepted')], required=True)
+
+    class Meta:
+        model=SOP
+        fields=('accepted','stud_username')
+
