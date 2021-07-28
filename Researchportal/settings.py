@@ -36,7 +36,10 @@ INSTALLED_APPS = [
     # third party
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders'
+    'corsheaders',
+
+    # image field
+    'imagekit',
 ]
 
 MIDDLEWARE = [
