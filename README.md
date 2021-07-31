@@ -179,8 +179,8 @@ git checkout -b develop
 
 <table>
 <tr>
-<td align="center"><img src="https://avatars.githubusercontent.com/u/55195504?v=4" width="100px;" alt=""/><br /><sub><a href="https://github.com/sa-y-an"><b>Sayan Mandal</b></a></sub></td>
-<td align="center"><img src="https://avatars.githubusercontent.com/u/26196922?v=4" width="100px;" alt=""/><br /><sub><a href="https://github.com/arin17bishwa"><b>Biswajit Ghosh</b></a></sub></td>
+<td align="center"><img src="https://avatars.githubusercontent.com/u/55195504?v=4" width="100px;" alt=""/><br /><sub><a href="https://github.com/sa-y-an"><b>Sayan Mondal</b></a></sub></td>
+<td align="center"><img src="https://avatars.githubusercontent.com/u/26196922?v=4" width="100px;" alt=""/><br /><sub><a href="https://github.com/arin17bishwa"><b>Bishwajit Ghosh</b></a></sub></td>
 <td align="center"><img src="https://avatars.githubusercontent.com/u/74106901?v=4" width="100px;" alt=""/><br /><sub><a href="https://github.com/durbar2003"><b>Durbar Chakrabarty</b></a></sub></td>
 <td align="center"><img src="https://avatars.githubusercontent.com/u/77785024?v=4" width="100px;" alt=""/><br /><sub><a href="https://github.com/Sreemoyee26"><b>Sreemoyee Sadhukhan</b></a></sub></td>
 <td align="center"><img src="https://avatars.githubusercontent.com/u/77566807?v=4" width="100px;" alt=""/><br /><sub><a href="https://github.com/NaveenS143"><b>Naveen Leo</b></a></sub></td>
