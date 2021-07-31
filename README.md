@@ -169,7 +169,7 @@ git checkout -b develop
 ## Contacts
 <br>
 
-> Website : &nbsp;&nbsp;&nbsp; <a href="https://www.ieeesbnitdgp.com/"> https://www.ieeesbnitdgp.com/</a>
+> Website : &nbsp;&nbsp;&nbsp; <a href="https://www.ieeesbnitdgp.com/"> https://www.ieeesbnitdgp.com/</a><br>
 >Github :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://github.com/ieeesb-nitdgp">https://github.com/ieeesb-nitdgp</a>
 
 <br>
