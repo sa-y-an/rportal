@@ -83,7 +83,7 @@ class ResearchStatement(models.Model) :
         def get_queryset(self):
             return super().get_queryset() .filter(status='published')
 
-    
+
     options = (
         ('draft', 'Draft'),
         ('published', 'Published'),
