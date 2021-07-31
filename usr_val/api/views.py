@@ -23,6 +23,25 @@ from .serializers import (
 from usr_val.models import Student, Teacher
 from usr_val.utils import sendVerificationEmail
 from django.contrib.sites.shortcuts import get_current_site
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        refresh = self.get_token(self.user)
+        data['refresh'] = str(refresh)
+        data['access'] = str(refresh.access_token)
+
+        data['isStudent'] = self.user.groups.first().name == 'student'
+        data['user'] = UserSerializer(self.user).data
+
+        return data
+
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 
 class RegistrationView(CreateAPIView):
