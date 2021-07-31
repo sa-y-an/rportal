@@ -83,7 +83,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5,
+    'PAGE_SIZE': 3,
 
     'DEFAULT_THROTTLE_RATES': {
             'anon': '4/day',
@@ -91,13 +91,11 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
-# REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
-
 
 # JWT SETTINGS
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=6),  # TO BE REDUCED
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=7),  # TO BE REDUCED
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=15),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': False,

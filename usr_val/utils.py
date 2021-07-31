@@ -1,16 +1,19 @@
-import threading
-from rest_framework import serializers
 from django.core.exceptions import ValidationError
-import magic
 from django.utils.deconstruct import deconstructible
 from django.template.defaultfilters import filesizeformat
 from django.core.mail import EmailMessage
-from .constants import FACULTY_DOMAINS, STUDENT_DOMAINS
-import six
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
+from rest_framework import serializers
+
+import six
+import magic
+
+import threading
+
+from .constants import FACULTY_DOMAINS, STUDENT_DOMAINS
 
 
 class TokenGenerator(PasswordResetTokenGenerator):

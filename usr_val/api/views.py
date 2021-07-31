@@ -23,6 +23,25 @@ from .serializers import (
 from usr_val.models import Student, Teacher
 from usr_val.utils import sendVerificationEmail
 from django.contrib.sites.shortcuts import get_current_site
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        refresh = self.get_token(self.user)
+        data['refresh'] = str(refresh)
+        data['access'] = str(refresh.access_token)
+
+        data['isStudent'] = self.user.groups.first().name == 'student'
+        data['user'] = UserSerializer(self.user).data
+
+        return data
+
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 
 class RegistrationView(CreateAPIView):
@@ -31,7 +50,7 @@ class RegistrationView(CreateAPIView):
     def perform_create(self, serializer):
         user = serializer.save()
         current_site = get_current_site(self.request)
-        msg = sendVerificationEmail(domain=current_site.domain, user=user)
+        _ = sendVerificationEmail(domain=current_site.domain, user=user)
         # print(msg)
 
 
@@ -43,10 +62,10 @@ class StudentRegistrationView(CreateAPIView):
         context.update({"request": self.request})
         return context
 
-    def perform_create(self,serializer):
+    def perform_create(self, serializer):
         try:
             user = self.request.user
-        except Exception as e:
+        except Exception as _:
             raise ValidationError('Could not get user')
 
         if user.groups.first().name != 'student':  # checks if the user is actually a student
@@ -69,7 +88,7 @@ class TeacherRegistrationView(CreateAPIView):
     def perform_create(self, serializer):
         try:
             user = self.request.user
-        except Exception as e:
+        except Exception as _:
             raise ValidationError('Could not get user')
 
         if user.groups.first().name != 'teacher':  # checks if the user is actually a teacher
@@ -172,6 +191,6 @@ def resendVerificationView(request):
         return Response(data={'msg': "You either have activated account or you haven't created account yet"})
     domain = get_current_site(request).domain
 
-    msg = sendVerificationEmail(domain=domain, user=users.first())
+    _ = sendVerificationEmail(domain=domain, user=users.first())
     # print(msg)
     return Response(data=response)
