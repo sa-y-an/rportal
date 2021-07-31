@@ -2,7 +2,6 @@ from django.contrib import admin
 from .models import Post, SOP
 
 from imagekit.admin import AdminThumbnail
-# from .models import Photo
 
 
 class PhotoAdmin(admin.ModelAdmin):
@@ -12,6 +11,3 @@ class PhotoAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, PhotoAdmin)
 admin.site.register(SOP)
-
-# Register your models here.
-# admin.site.register(Post)
