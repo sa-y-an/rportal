@@ -14,7 +14,7 @@ DEBUG = False
 
 UPLOADED_FILES_USE_URL = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['ieeenitdgp.pythonanywhere.com']
 
 CORS_ALLOW_ALL_ORIGINS = True
 
