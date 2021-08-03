@@ -74,24 +74,16 @@ class Student(models.Model):
 class ResearchStatement(models.Model):
     """ a one to one model with Student  this allows drafting the statement before Submitting """
 
-    class PostObjects(models.Manager):
-        """ Function to return only published models """
-
-        def get_queryset(self):
-            return super().get_queryset().filter(status='published')
-
     options = (
         ('draft', 'Draft'),
         ('published', 'Published'),
     )
 
-    research_statement = models.TextField(default=" Please write what inspires you to do Research ", max_length=1000)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    research_statement = models.TextField(default=" Please write what inspires you to do Research ", max_length=1500)
+    student = models.OneToOneField(Student, on_delete=models.CASCADE)
 
     status = models.CharField(
         max_length=10, choices=options, default='published')
-    objects = models.Manager()  # default manager
-    postobjects = PostObjects()  # custom manager
 
     def __str__(self):
         return self.student.user.username

@@ -10,7 +10,10 @@ from .views import (
     RetrieveUpdateUserView,
     RetrieveUpdateStudentView,
     RetrieveUpdateTeacherView,
-    resendVerificationView
+    resendVerificationView,
+    RSCreateView,
+    RetrieveUpdateRSView,
+
 )
 from usr_val.views import activate
 app_name = 'usr_val'
@@ -26,6 +29,10 @@ urlpatterns = [
     path('student/create-profile/', StudentRegistrationView.as_view(), name='student_registration'),
     path('student/all/', AllStudentsView.as_view(), name='students'),
     path('student/details/<str:username>/', RetrieveUpdateStudentView.as_view(), name='student_update'),
+    
+    # RS related
+    path('student/rs/create/',RSCreateView.as_view(),name='create_rs'),
+    path('student/rs/update/<str:username>/',RetrieveUpdateRSView.as_view(),name='update_rs'),
 
     # teacher related
     path('teacher/create-profile/', TeacherRegistrationView.as_view(), name='teacher_registration'),
