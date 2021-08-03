@@ -19,6 +19,7 @@ from usr_val.api.serializers import StudentSerializer
 class PostPublishedList(generics.ListAPIView):
     """ Returns Only Published Posts """
     queryset = Post.postobjects.all()
+    pagination_class = None
     serializer_class = PostPublishedSerializer
 
 
