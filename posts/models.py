@@ -108,5 +108,5 @@ class SOP(models.Model):
 def pre_save_blog_post(sender, instance, *args, **kwargs):
     if not instance.slug:
         instance.slug = slugify(
-            instance.teacher.user.username + '-' + instance.title + '-' + str(datetime.datetime.now())
+            instance.teacher.user.username + '-' + instance.title + '-' + datetime.datetime.now().strftime("%Y%H%M%S%f")
         )
