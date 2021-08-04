@@ -148,3 +148,21 @@ class AppliedStudentsView(generics.ListAPIView):
         proj = generics.get_object_or_404(qs, **{'slug': slug, 'teacher__user': user})
         studs = Student.objects.filter(sop__post=proj, sop__accepted=0)
         return studs
+
+
+@api_view(['POST', ])
+def withdrawApplicationView(request, slug):
+    proj = Post.objects.filter(slug=slug)
+    if not proj.exists():
+        raise ValidationError('Project DNE.')
+    proj = proj.first()
+    user = request.user
+    sop = SOP.objects.filter(post=proj, student__user=user, accepted=0)
+    if not sop.exists():
+        raise ValidationError('You have no pending application for that project.')
+    sop = sop.first()
+    sop.accepted = -1
+    sop.save()
+    return Response(
+        data={'msg': 'Application withdrawn successfully. You can\'t apply again'},
+    )
