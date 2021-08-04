@@ -53,6 +53,12 @@ class RegistrationView(CreateAPIView):
         user = serializer.save()
         current_site = get_current_site(self.request)
         _ = sendVerificationEmail(domain=current_site.domain, user=user)
+        # auto creation of profile
+        if user.groups.first().name == 'student':
+            profile = Student(user=user)
+        else:
+            profile = Teacher(user=user)
+        profile.save()
         # print(msg)
 
 
