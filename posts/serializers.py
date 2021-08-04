@@ -33,7 +33,7 @@ class CreatePostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         read_only_fields = ('slug',)
-        fields = ('title', 'description', 'details', 'tag', 'is_active', 'status', 'slug')
+        fields = ('title', 'description', 'details', 'tag', 'is_active', 'status', 'slug', 'tag')
 
 
 class RetrieveUpdatePostSerializer(serializers.ModelSerializer):
