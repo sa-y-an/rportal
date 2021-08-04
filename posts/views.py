@@ -151,6 +151,7 @@ class AppliedStudentsView(generics.ListAPIView):
 
 
 @api_view(['POST', ])
+@permission_classes([IsAuthenticated, ])
 def withdrawApplicationView(request, slug):
     proj = Post.objects.filter(slug=slug)
     if not proj.exists():
