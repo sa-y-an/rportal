@@ -16,15 +16,15 @@ UPLOADED_FILES_USE_URL = True
 
 ALLOWED_HOSTS = ['ieeenitdgp.pythonanywhere.com']
 
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True
 
 # need to be modified later
-CORS_ALLOWED_ORIGINS = [
-    "http://ieeerp.netlify.app/",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+# CORS_ALLOWED_ORIGINS = [
+#     "http://ieeerp.netlify.app/",
+#     "http://localhost:3000",
+#     "http://127.0.0.1:3000",
 
-]
+# ]
 
 
 
