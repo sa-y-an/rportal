@@ -3,7 +3,7 @@ from rest_framework.validators import UniqueValidator
 from django.contrib.auth.models import User
 
 from usr_val.utils import institute_email_validator, LowerEmailField, FileValidator
-from usr_val.models import Teacher, Student
+from usr_val.models import Teacher, Student, ResearchStatement
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -59,7 +59,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class StudentRegistrationSerializer(serializers.ModelSerializer):
-
     avatar_thumbnail = serializers.ImageField(read_only=True)
 
     cv = serializers.FileField(allow_null=True,
@@ -99,7 +98,6 @@ class TeacherRegistrationSerializer(serializers.ModelSerializer):
 
 
 class TeacherSerializer(serializers.ModelSerializer):
-
     avatar_thumbnail = serializers.ImageField(read_only=True)
 
     user = UserSerializer()
@@ -125,7 +123,6 @@ class RetrieveUpdateStudentSerializer(serializers.ModelSerializer):
 
 
 class RetrieveUpdateTeacherSerializer(serializers.ModelSerializer):
-
     avatar_thumbnail = serializers.ImageField(read_only=True)
 
     user = UserSerializer()
@@ -133,3 +130,19 @@ class RetrieveUpdateTeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
         fields = '__all__'
+
+
+class RSSerializer(serializers.ModelSerializer):
+    # student = StudentSerializer(read_only=True)
+
+    class Meta:
+        model = ResearchStatement
+        exclude = ['student', ]
+
+
+class RetrieveUpdateRSSerializer(serializers.ModelSerializer):
+    # student = StudentSerializer()
+
+    class Meta:
+        model = ResearchStatement
+        exclude = ['student', ]

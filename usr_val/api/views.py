@@ -19,8 +19,10 @@ from .serializers import (
     RetrieveUpdateUserSerializer,
     RetrieveUpdateStudentSerializer,
     RetrieveUpdateTeacherSerializer,
+    RSSerializer,
+    RetrieveUpdateRSSerializer,
 )
-from usr_val.models import Student, Teacher
+from usr_val.models import Student, Teacher, ResearchStatement
 from usr_val.utils import sendVerificationEmail
 from django.contrib.sites.shortcuts import get_current_site
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -51,6 +53,12 @@ class RegistrationView(CreateAPIView):
         user = serializer.save()
         current_site = get_current_site(self.request)
         _ = sendVerificationEmail(domain=current_site.domain, user=user)
+        # auto creation of profile
+        if user.groups.first().name == 'student':
+            profile = Student(user=user)
+        else:
+            profile = Teacher(user=user)
+        profile.save()
         # print(msg)
 
 
@@ -194,3 +202,39 @@ def resendVerificationView(request):
     _ = sendVerificationEmail(domain=domain, user=users.first())
     # print(msg)
     return Response(data=response)
+
+
+class RSCreateView(CreateAPIView):
+    serializer_class = RSSerializer
+
+    def perform_create(self, serializer):
+        try:
+            user = self.request.user
+        except Exception as _:
+            raise ValidationError('Could not get user')
+
+        if user.groups.first().name != 'student':  # checks if the user is actually a student
+            raise ValidationError('Teacher cannot create Research statement for their profile.')
+
+        if ResearchStatement.objects.filter(student__user=user).exists():
+            raise ValidationError('RS already exists. Please edit existing one.')
+        stud_qs = Student.objects.filter(user=user)
+        if not stud_qs:
+            raise ValidationError('First create a profile for adding RS.')
+        stud = stud_qs.first()
+        serializer.save(student=stud)
+
+
+class RetrieveUpdateRSView(BaseRetrieveUpdateView):
+    queryset = ResearchStatement.objects.all()
+    serializer_class = RSSerializer
+    lookup_field = 'student__user__username'
+
+    def check_update_permissions(self, request, *args, **kwargs):
+        user = request.user
+        obj = self.get_object()
+        if not user == obj.student.user:
+            raise ValidationError("Can not change someone else's Research Statement")
+        return True
+
+

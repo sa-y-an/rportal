@@ -12,7 +12,8 @@ urlpatterns = [
     path('apply/<slug:slug>/', views.apply_project, name='apply_post'),
     path('shortlist/<slug:slug>/', views.shortlistStudents, name='shortlist'),
     path('applied/<slug:slug>/', views.AppliedStudentsView.as_view(), name='applied_students'),
+    path('withdraw/<slug:slug>/', views.withdrawApplicationView, name='withdraw_application'),
 
 ]
 
-urlpatterns = format_suffix_patterns(urlpatterns)
+# urlpatterns = format_suffix_patterns(urlpatterns)
