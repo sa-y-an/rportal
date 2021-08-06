@@ -13,6 +13,8 @@ urlpatterns = [
     path('shortlist/<slug:slug>/', views.shortlistStudents, name='shortlist'),
     path('applied/<slug:slug>/', views.AppliedStudentsView.as_view(), name='applied_students'),
     path('withdraw/<slug:slug>/', views.withdrawApplicationView, name='withdraw_application'),
+    path('applied-to/', views.AppliedToListView.as_view(), name='applied_to'),
+    path('my-projects/',views.ProjectsCreatedListView.as_view(),name='my_projects'),
 
 ]
 

@@ -168,3 +168,24 @@ def withdrawApplicationView(request, slug):
     return Response(
         data={'msg': 'Application withdrawn successfully. You can\'t apply again'},
     )
+
+
+class AppliedToListView(generics.ListAPIView):
+    permission_classes = (IsAuthenticated,)
+    pagination_class = None
+    serializer_class = SOPSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return SOP.objects.filter(student__user=user, accepted__in=(0, 1))
+
+
+class ProjectsCreatedListView(generics.ListAPIView):
+    permission_classes = (IsAuthenticated,)
+    pagination_class = None
+    serializer_class = RetrieveUpdatePostSerializer
+
+    def get_queryset(self):
+        user=self.request.user
+        return Post.objects.filter(teacher__user=user)
+
