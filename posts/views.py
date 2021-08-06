@@ -186,6 +186,5 @@ class ProjectsCreatedListView(generics.ListAPIView):
     serializer_class = RetrieveUpdatePostSerializer
 
     def get_queryset(self):
-        user=self.request.user
+        user = self.request.user
         return Post.objects.filter(teacher__user=user)
-

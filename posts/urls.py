@@ -1,8 +1,6 @@
 from django.urls import path
 from . import views
 
-from rest_framework.urlpatterns import format_suffix_patterns
-
 app_name = 'posts'
 
 urlpatterns = [
@@ -14,8 +12,6 @@ urlpatterns = [
     path('applied/<slug:slug>/', views.AppliedStudentsView.as_view(), name='applied_students'),
     path('withdraw/<slug:slug>/', views.withdrawApplicationView, name='withdraw_application'),
     path('applied-to/', views.AppliedToListView.as_view(), name='applied_to'),
-    path('my-projects/',views.ProjectsCreatedListView.as_view(),name='my_projects'),
+    path('my-projects/', views.ProjectsCreatedListView.as_view(), name='my_projects'),
 
 ]
-
-# urlpatterns = format_suffix_patterns(urlpatterns)
