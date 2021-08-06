@@ -25,6 +25,7 @@ class PostPublishedList(generics.ListAPIView):
 
 class PostCreateView(generics.CreateAPIView):
     serializer_class = CreatePostSerializer
+    permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
         try:
