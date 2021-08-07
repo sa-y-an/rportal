@@ -29,6 +29,6 @@ jobs:
       env: 
         SECRET_KEY : 'fhguhu2136@fhjyj'
         EMAIL_HOST_USER : 'abc@gmail.com'
-        EMAIL_HOST_PASSWORD : 'password'
+        PASSWORD : 'password'
       run: |
         python local.py test
