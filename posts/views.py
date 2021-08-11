@@ -143,7 +143,7 @@ def shortlistStudents(request, slug, *args, **kwargs):
 
 
 class AppliedStudentsView(generics.ListAPIView):
-    serializer_class = StudentSerializer
+    serializer_class = SOPSerializer
     lookup_url_kwarg = 'slug'
 
     def get_queryset(self):
@@ -151,8 +151,8 @@ class AppliedStudentsView(generics.ListAPIView):
         user = self.request.user
         qs = Post.postobjects.all()
         proj = generics.get_object_or_404(qs, **{'slug': slug, 'teacher__user': user})
-        studs = Student.objects.filter(sop__post=proj, sop__accepted=0)
-        return studs
+        sops = SOP.objects.filter(post=proj, accepted=0)
+        return sops
 
 
 @api_view(['POST', ])
@@ -177,11 +177,11 @@ def withdrawApplicationView(request, slug):
 class AppliedToListView(generics.ListAPIView):
     permission_classes = (IsAuthenticated,)
     pagination_class = None
-    serializer_class = SOPSerializer
+    serializer_class = PostPublishedSerializer
 
     def get_queryset(self):
         user = self.request.user
-        return SOP.objects.filter(student__user=user, accepted__in=(0, 1))
+        return Post.objects.filter(sop__student__user=user)
 
 
 class ProjectsCreatedListView(generics.ListAPIView):
