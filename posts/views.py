@@ -42,7 +42,7 @@ class PostCreateView(generics.CreateAPIView):
         serializer.save(teacher=profile)
 
 
-class ProjectRetrieveUpdateView(generics.RetrieveUpdateAPIView):
+class ProjectRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = RetrieveUpdatePostSerializer
     permission_classes = (IsAuthenticated,)
@@ -50,7 +50,7 @@ class ProjectRetrieveUpdateView(generics.RetrieveUpdateAPIView):
     lookup_field = 'slug'
 
     def get_serializer_context(self):
-        context = super(ProjectRetrieveUpdateView, self).get_serializer_context()
+        context = super(ProjectRetrieveUpdateDestroyView, self).get_serializer_context()
         context.update({"request": self.request})
         return context
 
@@ -81,6 +81,10 @@ class ProjectRetrieveUpdateView(generics.RetrieveUpdateAPIView):
     def get(self, request, *args, **kwargs):
         _ = self.check_view_permission(request, *args, **kwargs)
         return self.retrieve(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        _ = self.check_update_permissions(request, *args, **kwargs)
+        return self.destroy(request, *args, **kwargs)
 
 
 @api_view(['POST', ])
