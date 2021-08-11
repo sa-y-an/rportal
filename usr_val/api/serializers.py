@@ -79,9 +79,15 @@ class StudentRegistrationSerializer(serializers.ModelSerializer):
         exclude = ['user', ]
 
 
+class CustomRSField(serializers.RelatedField):
+
+    def to_representation(self, value):
+        return value.research_statement
+
+
 class StudentSerializer(serializers.ModelSerializer):
     user = UserSerializer()
-
+    rs = CustomRSField(read_only=True)
     avatar_thumbnail = serializers.ImageField(read_only=True)
 
     class Meta:

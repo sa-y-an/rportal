@@ -80,13 +80,16 @@ class ResearchStatement(models.Model):
     )
 
     research_statement = models.TextField(default=" Please write what inspires you to do Research ", max_length=1500)
-    student = models.OneToOneField(Student, on_delete=models.CASCADE)
+    student = models.OneToOneField(Student, on_delete=models.CASCADE, related_name='rs')
 
     status = models.CharField(
         max_length=10, choices=options, default='published')
 
     def __str__(self):
         return self.student.user.username
+
+    class Meta:
+        ordering = ('id',)
 
 
 def post_save_userGroup(sender, instance, *args, **kwargs):
