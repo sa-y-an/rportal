@@ -129,14 +129,7 @@ python local.py runserver
 
 <!--Setup-->
 ### Setup Guidelines:
-- After sucessfull installation create a .env in the directory where settings.py is located 
-- It must have the content as follows :
-```
-SECRET_KEY=
-DEBUG=True
-EMAIL_HOST_USER=
-PASSWORD=
-```
+- After sucessfull installation create a .env in the directory where settings.py is located following the structure of .env.example file
 
 
 > Navigate to localhost:8000 to see the magic <br>
