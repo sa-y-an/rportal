@@ -181,7 +181,7 @@ class AppliedToListView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return Post.objects.filter(sop__student__user=user)
+        return Post.objects.filter(sop__student__user=user, sop__accepted__in=(0, 1))
 
 
 class ProjectsCreatedListView(generics.ListAPIView):
