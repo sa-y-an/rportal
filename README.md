@@ -50,19 +50,6 @@
 ## Walkthrough of the Research portal
 <br>
 
-We often see that students tend to give up easily on research work and students with high aspirations shift to other fields of industry experience.
-
-### Problems faced by research aspirants :
-* The process of getting a research project can be very tedious and most students find it difficult.
-* People interested in core have to wait until 2nd or 3rd year to know interesting topics in their domain
-* Most of the 1st and 2nd year students don’t even know about the exact process of applying for research projects
-
-### Solution :
-By providing the students with a laid-out path to overcome this intensive and difficult process the solution is to make a Research Portal.
-<br>
-With this Research Portal, students won’t need to search for projects anymore and can easily find and apply to projects of their interest. In the Research portal a faculty can post for projects they are currently working on and might need assistance . These projects will then appear in the students feed. Interested students can then apply for them and the faculty can select them depending on their skill levels
-<br>
-
 ### Hierarchy :
 
 There are 2 user groups: student and teacher
@@ -132,10 +119,6 @@ python local.py runserver
 - After sucessfull installation create a .env in the directory where settings.py is located following the structure of .env.example file
 
 
-> Navigate to localhost:8000 to see the magic <br>
-> PS 2: For more details refer to this tutorial <a href="https://simpleisbetterthancomplex.com/series/2017/09/04/a-complete-beginners-guide-to-django-part-1.html"> Tutorial </a> <br>
-
-<br>
 
 <!--Contribution Guidelines-->
 ## Contribution Guidelines 
