@@ -79,7 +79,7 @@ class ResearchStatement(models.Model):
         ('published', 'Published'),
     )
 
-    research_statement = models.TextField(default=" Please write what inspires you to do Research ", max_length=1500)
+    research_statement = models.TextField(blank=True, max_length=1500)
     student = models.OneToOneField(Student, on_delete=models.CASCADE, related_name='rs')
 
     status = models.CharField(
