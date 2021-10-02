@@ -12,10 +12,7 @@
 
 # Research Portal Backend
 <!-- PROJECT LOGO -->
-<br />
-<p align="center">
-  <img  src="screenshots/logo.png" alt="logo">
-</p>
+
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -63,14 +60,14 @@ Active projects by teachers will be shown here.Upload your grades and necessary 
 
 ### Benefits :
 
-> * Finding Research Projects made easier and much faster.
-> * Research projects posted throughout the year.
-> * Enhancing the CV of students by participating in research projects.
+ * Finding Research Projects made easier and much faster.
+ * Research projects posted throughout the year.
+ * Enhancing the CV of students by participating in research projects.
 
 <!--Frameworks used-->
 ### Built With:
-> Django <br>
-> Django Rest Framework
+ Django <br>
+ Django Rest Framework
 
 <br>
 
