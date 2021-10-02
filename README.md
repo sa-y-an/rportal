@@ -1,5 +1,13 @@
+# Archived 
+
+Code now lives inside IEEE Repository - https://github.com/ieeesb-nitdgp/Research-Portal-Backend.git
+
+
+
+-----------------------------------------
+
 <!-- PROJECT SHIELDS -->
-![](https://img.shields.io/github/contributors/ieeesb-nitdgp/rportal1)
+![](https://img.shields.io/github/contributors/sa-y-an/rportal1)
 &nbsp;&nbsp;&nbsp;&nbsp;
 ![](https://img.shields.io/github/forks/sa-y-an/rportal1)
 &nbsp;&nbsp;&nbsp;&nbsp;
