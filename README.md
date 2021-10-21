@@ -1,6 +1,7 @@
 # Archived 
 
-Code now lives inside IEEE Repository - https://github.com/ieeesb-nitdgp/Research-Portal-Backend.git
+### Code now lives inside IEEE Repository - <br>
+### https://github.com/ieeesb-nitdgp/Research-Portal-Backend.git
 
 
 
@@ -19,65 +20,7 @@ Code now lives inside IEEE Repository - https://github.com/ieeesb-nitdgp/Researc
 
 
 # Research Portal Backend
-<!-- PROJECT LOGO -->
 
-
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#walkthrough-of-the-research-portal">Walkthrough of the Research Portal</a>
-      <ul>
-        <li><a href="#problems-faced-by-research-aspirants">Problems faced by research aspirants</a></li>
-        <li><a href="#solution">Solution</a></li>
-        <li><a href="#hierarchy">Hierarchy</a></li>
-        <li><a href="#benefits">Benefits</a></li>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-        <li><a href="#setup-guidelines">Setup Guidelines</a></li>
-      </ul>
-    </li>
-    <li><a href="#how-to-contribute">How to Contribute</a></li>
-    <li><a href="#contacts">Contacts</a></li>
-    <li><a href="#contributors">Contributors</a></li>
-  </ol>
-</details>
-
-<br>
-
-<!-- Walkthrough -->
-## Walkthrough of the Research portal
-<br>
-
-### Hierarchy :
-
-There are 2 user groups: student and teacher
-
-#### Signup/login:
-Signup and update your account with necessary details like name, department, work email, phone number, etc. An email verification will be sent to the email id provided.
-Institute email id is necessary for verification as groups are auto-assigned based on that.
-
-#### Projects feed:
-Active projects by teachers will be shown here.Upload your grades and necessary documents for the project you like and wait to be shortlisted.
-
-### Benefits :
-
- * Finding Research Projects made easier and much faster.
- * Research projects posted throughout the year.
- * Enhancing the CV of students by participating in research projects.
-
-<!--Frameworks used-->
-### Built With:
- Django <br>
- Django Rest Framework
-
-<br>
 
 <!-- GETTING STARTED -->
 ## Getting Started
