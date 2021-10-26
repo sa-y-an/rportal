@@ -1,12 +1,14 @@
 from pathlib import Path
-import os
-import environ
 from datetime import timedelta
-env = environ.Env()
-environ.Env.read_env()
+import json
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+params = json.load(open(os.path.join(BASE_DIR, 'Qriosity/config.json'), 'r'))
 
 
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = params["SECRET_KEY"]
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -202,5 +204,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = env("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env("PASSWORD")
+EMAIL_HOST_USER = params["EMAIL_HOST_USER"]
+EMAIL_HOST_PASSWORD = params["PASSWORD"]
