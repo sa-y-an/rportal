@@ -5,7 +5,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-params = json.load(open(os.path.join(BASE_DIR, 'Qriosity/config.json'), 'r'))
+params = json.load(open(os.path.join(BASE_DIR, 'Researchportal/config.json'), 'r'))
 
 
 SECRET_KEY = params["SECRET_KEY"]
@@ -205,4 +205,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = params["EMAIL_HOST_USER"]
-EMAIL_HOST_PASSWORD = params["PASSWORD"]
+EMAIL_HOST_PASSWORD = params["EMAIL_HOST_PASSWORD"]
