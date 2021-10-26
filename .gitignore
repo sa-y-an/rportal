@@ -10,4 +10,4 @@ media
 *.env
 myenv
 staticfiles
-*.config.json
+*config.json
