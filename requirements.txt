@@ -40,3 +40,5 @@ sqlparse==0.4.2
 uritemplate==3.0.1
 urllib3==1.26.6
 whitenoise==5.2.0
+cloudinary
+django-cloudinary-storage

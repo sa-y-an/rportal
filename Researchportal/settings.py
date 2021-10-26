@@ -2,6 +2,8 @@ from pathlib import Path
 import os
 import environ
 from datetime import timedelta
+import cloudinary
+import cloudinary_storage
 
 
 import dj_database_url
@@ -53,6 +55,11 @@ INSTALLED_APPS = [
 
     # image field
     'imagekit',
+
+    #clouditionary
+    'cloudinary',
+    'cloudinary_storage',
+
 ]
 
 MIDDLEWARE = [
@@ -68,6 +75,15 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Researchportal.urls'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ['CLOUD_NAME'],
+    'API_KEY': os.environ['API_KEY'],
+    'API_SECRET': os.environ['API_SECRET'],
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 
 #  SSL Setttings
