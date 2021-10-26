@@ -11,7 +11,7 @@ import django_heroku
 import psycopg2
 
 
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = os.environ['SECRET_KEY']
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
