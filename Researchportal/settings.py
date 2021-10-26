@@ -5,6 +5,11 @@ from datetime import timedelta
 env = environ.Env()
 environ.Env.read_env()
 
+import dj_database_url
+import os
+import django_heroku
+import psycopg2
+
 
 SECRET_KEY = env("SECRET_KEY")
 
@@ -14,7 +19,7 @@ DEBUG = False
 
 UPLOADED_FILES_USE_URL = True
 
-ALLOWED_HOSTS = ['ieeenitdgp.pythonanywhere.com']
+ALLOWED_HOSTS = ['herokuapp.com']
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -136,12 +141,13 @@ WSGI_APPLICATION = 'Researchportal.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+DATABASES = {}
+
+DATABASES['default'] = dj_database_url.config(
+    conn_max_age=600, ssl_require=True)
 
 
 
@@ -212,5 +218,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = env("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env("PASSWORD")
+EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]
+EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
+
+
+
+
+django_heroku.settings(locals())
