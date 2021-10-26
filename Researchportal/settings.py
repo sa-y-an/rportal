@@ -69,6 +69,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Researchportal.urls'
 
+
+#  SSL Setttings
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
