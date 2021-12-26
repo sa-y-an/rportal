@@ -38,6 +38,9 @@ class Post(models.Model):
                                validators=[FileExtensionValidator(allowed_extensions=['pdf', ])],
                                max_length=255
                                )
+
+    requirements = models.TextField(blank=True, default=' Please provide a requirement')
+    backgroundKnowledge = models.TextField(blank=True, default=' Please provide a description ')
     tag = models.TextField(blank=True, default='open to all')
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     student = models.ManyToManyField(Student, blank=True, related_name="applied_students")
@@ -60,6 +63,9 @@ class Post(models.Model):
         max_length=10, choices=options, default='published')
     objects = models.Manager()  # default manager
     postobjects = PostObjects()  # custom manager
+
+
+    
 
     class Meta:
         ordering = ('-published',)

@@ -16,7 +16,7 @@ class PostPublishedSerializer(serializers.ModelSerializer):
     teacher = TeacherSerializer()
 
     class Meta:
-        fields = ('title', 'description', 'tag', 'teacher', 'published', 'avatar_thumbnail', 'slug')
+        fields = ('title', 'description', 'tag', 'teacher', 'published', 'avatar_thumbnail', 'slug', 'requirements', 'backgroundKnowledge')
 
         model = Post
 
@@ -33,7 +33,7 @@ class CreatePostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         read_only_fields = ('slug',)
-        fields = ('title', 'description', 'details', 'tag', 'is_active', 'status', 'slug', 'tag')
+        fields = ('title', 'description', 'details', 'tag', 'is_active', 'status', 'slug', 'tag', 'requirements', 'backgroundKnowledge')
 
 
 class RetrieveUpdatePostSerializer(serializers.ModelSerializer):
