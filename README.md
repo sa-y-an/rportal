@@ -36,15 +36,6 @@ pip install virtualenv
 virtualenv myenv
 ```
 
-Activate virtualenv
-```
-myenv\scripts\activate
-```
-
-> PS : Linux Users follow different guidelines 
-> For further details refer <a href="https://www.geeksforgeeks.org/creating-python-virtual-environment-windows-linux/">https://www.geeksforgeeks.org/creating-python-virtual-environment-windows-linux/</a>
-
-
 Django Installation ( Developer Mode )
 ```
 pip install -r requirements.txt
@@ -76,16 +67,7 @@ git checkout -b develop
 - Make Changes 
 - Push to your repo & make a pull request
 
-> PS 3 : Instructions to update git forked repo <a href="https://medium.com/@topspinj/how-to-git-rebase-into-a-forked-repo-c9f05e821c8a"> Medium </a>
-
-<br>
-
-<!--Contacts-->
-## Contacts
-<br>
-
-> Website : &nbsp;&nbsp;&nbsp; <a href="https://www.ieeesbnitdgp.com/"> https://www.ieeesbnitdgp.com/</a><br>
->Github :  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://github.com/ieeesb-nitdgp">https://github.com/ieeesb-nitdgp</a>
+> PS : Instructions to update git forked repo <a href="https://medium.com/@topspinj/how-to-git-rebase-into-a-forked-repo-c9f05e821c8a"> Medium </a>
 
 <br>
 
@@ -104,5 +86,4 @@ git checkout -b develop
 
 <br>
 
-> For any suggestions, create an issue or start a discussion in the discussion tab.
 
